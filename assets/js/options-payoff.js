@@ -79,465 +79,966 @@
 
   // ───────────────────────── Text (all user-facing strings; English UI) ─────────────────────────
   // To add a language later, add I18N.xx with the same keys and point T at it.
-  var I18N = { en: {
-    "ui": {
-      "unlimited": "Unlimited",
-      "negUnlimited": "-Unlimited",
-      "none": "None",
-      "chartTitle": "Payoff at expiration",
-      "chartAria": "Payoff at expiration chart",
-      "emptyTitle": "Add a strategy to compare",
-      "emptyBody": "Click “+ Add strategy” under Strategy builder and add legs to draw the payoff at expiration. You can overlay up to 3 strategies.",
-      "summaryTitle": "Strategy comparison",
-      "thead": [
-        "Strategy",
-        "Legs",
-        "Initial cash flow",
-        "Max profit",
-        "Max loss",
-        "Break-even"
-      ],
-      "summaryNote": "Amounts = per-unit option P&L × quantity × contract multiplier. Initial cash flow counts option premiums only: + received, − paid.",
-      "tableEmpty": "No strategies to compare yet.",
-      "marketTitle": "Market inputs",
-      "fieldS": "Spot price S₀",
-      "fieldIv": "Implied volatility",
-      "fieldDays": "Days to expiry",
-      "unitDays": "days",
-      "fieldR": "Risk-free rate",
-      "fieldMult": "Contract multiplier",
-      "autoPrice": "Price premiums with Black-Scholes (uncheck to enter them manually)",
-      "templateAria": "Standard strategy template",
-      "templatePlaceholder": "Load a standard strategy template (optional)",
-      "addCall": "+ Call",
-      "addPut": "+ Put",
-      "addStock": "+ Underlying",
-      "editorTitle": "Strategy builder",
-      "addSlot": "+ Add strategy",
-      "save": "Save",
-      "share": "Copy share link",
-      "reset": "Reset",
-      "storageNote": "Settings save automatically on every change and stay only in this browser’s localStorage. Nothing is sent to a server, and no cookies are used.",
-      "stLoadedUrl": "Loaded the settings from the share link.",
-      "stLoadedLocal": "Restored your last settings from this browser.",
-      "stSaved": "Saved in this browser.",
-      "stSaveFail": "Couldn’t save: this browser is blocking localStorage.",
-      "stReset": "Cleared the saved settings and started over.",
-      "stShared": "Share link copied.",
-      "errMarket": "Please check the value: allowed range is {0} to {1}{2}. The previous value is used for now.",
-      "errLeg": "Please check the value: allowed range is {0} to {1}{2}.",
-      "wholeNumber": " (whole number)",
-      "errMaxLegs": "Up to {0} legs per strategy.",
-      "tabShowAria": "Show strategy {0} on the chart",
-      "tabDeleteAria": "Delete strategy {0}",
-      "expiryNote": "All legs share the same expiration (European style, payoff at expiration).",
-      "legsEmpty": "Add call, put, or underlying legs with the buttons below, or load a standard strategy template.",
-      "typeCall": "Call",
-      "typePut": "Put",
-      "typeStock": "Underlying",
-      "sideBuy": "Buy",
-      "sideSell": "Sell",
-      "sideShort": "Short",
-      "legTypeAria": "Leg {0} type",
-      "legSideAria": "Leg {0} side",
-      "legFieldAria": "Leg {0} {1}",
-      "legDeleteAria": "Delete leg {0}",
-      "qty": "Qty",
-      "entry": "Entry price",
-      "strike": "Strike",
-      "premium": "Premium",
-      "autoTitle": "Auto-priced (uncheck Black-Scholes pricing to edit)",
-      "compStock": "{0} underlying",
-      "compLong": "Long",
-      "compShort": "Short",
-      "compOpt": "{0} {1} {2}",
-      "readoutHint": "Hover over or tap the chart to compare P&L at any expiration price. Dots mark break-even points.",
-      "readoutAt": "At expiration price {0} ({1}%)",
-      "koLabel": "Korean: "
-    },
-    "groups": {
-      "basic": "Basics",
-      "stock": "Stock + options",
-      "vertical": "Vertical spreads",
-      "volatility": "Volatility",
-      "range": "Range-bound (butterflies & condors)",
-      "synthetic": "Synthetics & ratios"
-    },
-    "naming": {
-      "empty": {
-        "name": "Empty strategy",
-        "ko": "빈 전략",
-        "desc": "Add legs or load a standard strategy template."
+  var I18N = {
+    "en": {
+      "ui": {
+        "unlimited": "Unlimited",
+        "negUnlimited": "−Unlimited",
+        "none": "None",
+        "chartTitle": "Payoff at expiration",
+        "chartAria": "Payoff-at-expiration chart",
+        "emptyTitle": "Add a strategy to compare",
+        "emptyBody": "Click “+ Add strategy” under Strategy builder and add legs to draw the payoff at expiration. You can overlay up to 3 strategies.",
+        "summaryTitle": "Strategy comparison",
+        "thead": [
+          "Strategy",
+          "Legs",
+          "Initial cash flow",
+          "Max profit",
+          "Max loss",
+          "Break-even"
+        ],
+        "summaryNote": "Amounts = per-unit option P&L × quantity × contract multiplier. Initial cash flow counts option premiums only: + received, − paid.",
+        "tableEmpty": "No strategies to compare yet.",
+        "marketTitle": "Market inputs",
+        "fieldS": "Spot price S₀",
+        "fieldIv": "Implied volatility",
+        "fieldDays": "Days to expiry",
+        "unitDays": "days",
+        "fieldR": "Risk-free rate",
+        "fieldMult": "Contract multiplier",
+        "autoPrice": "Auto-price premiums with Black-Scholes (uncheck to enter manually)",
+        "templateAria": "Standard strategy template",
+        "templatePlaceholder": "Load a standard strategy template (optional)",
+        "addCall": "+ Call",
+        "addPut": "+ Put",
+        "addStock": "+ Underlying",
+        "editorTitle": "Strategy builder",
+        "addSlot": "+ Add strategy",
+        "save": "Save",
+        "share": "Copy share link",
+        "reset": "Reset",
+        "storageNote": "Settings save automatically on every change and stay only in this browser’s localStorage. Nothing is sent to a server, and no cookies are used.",
+        "stLoadedUrl": "Loaded the settings from the share link.",
+        "stLoadedLocal": "Restored your last settings from this browser.",
+        "stSaved": "Saved in this browser.",
+        "stSaveFail": "Couldn’t save: this browser is blocking localStorage.",
+        "stReset": "Cleared the saved settings and started over.",
+        "stShared": "Share link copied.",
+        "errMarket": "Please check the value: allowed range is {0} to {1}{2}. The previous value is used for now.",
+        "errLeg": "Please check the value: allowed range is {0} to {1}{2}.",
+        "wholeNumber": " (whole number)",
+        "errMaxLegs": "Up to {0} legs per strategy.",
+        "tabShowAria": "Show strategy {0} on the chart",
+        "tabDeleteAria": "Delete strategy {0}",
+        "expiryNote": "All legs share the same expiration (European style, payoff at expiration).",
+        "legsEmpty": "Add call, put, or underlying legs with the buttons below, or load a standard strategy template.",
+        "typeCall": "Call",
+        "typePut": "Put",
+        "typeStock": "Underlying",
+        "sideBuy": "Buy",
+        "sideSell": "Sell",
+        "sideShort": "Short",
+        "legTypeAria": "Leg {0} type",
+        "legSideAria": "Leg {0} side",
+        "legFieldAria": "Leg {0} {1}",
+        "legDeleteAria": "Delete leg {0}",
+        "qty": "Qty",
+        "entry": "Entry price",
+        "strike": "Strike",
+        "premium": "Premium",
+        "autoTitle": "Auto-priced (uncheck Black-Scholes pricing to edit)",
+        "compStock": "{0} underlying",
+        "compLong": "Long",
+        "compShort": "Short",
+        "compOpt": "{0} {1} {2}",
+        "readoutHint": "Hover over or tap the chart to compare P&L at any expiration price. Dots mark break-even points.",
+        "readoutAt": "At expiration price {0} ({1}%)",
+        "koLabel": "Korean: ",
+        "langToggleAria": "Switch language",
+        "langKo": "한글",
+        "langEn": "ENG"
       },
-      "offset": {
-        "name": "No net position (offsetting)",
-        "ko": "포지션 없음(상쇄됨)",
-        "desc": "The long and short legs cancel out, so there is no net position. Only the premium difference remains at expiration."
+      "groups": {
+        "basic": "Basic",
+        "stock": "Stock + options",
+        "vertical": "Vertical spreads",
+        "volatility": "Volatility",
+        "range": "Range-bound (butterflies & condors)",
+        "synthetic": "Synthetics & ratios"
       },
-      "custom": {
-        "name": "Custom strategy",
-        "ko": "사용자 정의 전략",
-        "desc": "This combination doesn’t match a standard strategy in the catalog. Check the metrics and the chart."
+      "naming": {
+        "empty": {
+          "name": "Empty strategy",
+          "ko": "빈 전략",
+          "desc": "Add legs or load a standard strategy template."
+        },
+        "offset": {
+          "name": "No net position (offsetting)",
+          "ko": "포지션 없음(상쇄됨)",
+          "desc": "The long and short legs cancel out, so there is no net position. Only the premium difference remains at expiration."
+        },
+        "custom": {
+          "name": "Custom strategy",
+          "ko": "사용자 정의 전략",
+          "desc": "This combination doesn’t match a standard strategy in the catalog. Check the metrics and the chart."
+        },
+        "reverseName": "Reverse of {0}",
+        "reverseKo": "{0}의 반대 포지션",
+        "reverseDesc": "Every buy and sell in “{0}” is flipped, so the payoff is mirrored top to bottom.",
+        "brokenDesc": "A butterfly with unequal wing widths (broken wing). Unlike the equidistant version, the two outer zones settle at different P&L levels, so on the wider-wing side you can lose (or make) more than the net premium. See the computed max profit and loss below.",
+        "ratioSpreadName": "{0} Ratio Spread {1}:{2} (OIC: Short Ratio {0} Spread)",
+        "ratioBackName": "{0} Ratio Backspread {1}:{2} (OIC: Long Ratio {0} Spread)",
+        "ratioSpreadKo": "{0} 레이쇼 스프레드 ({1}:{2})",
+        "ratioBackKo": "{0} 레이쇼 백스프레드 ({1}:{2})",
+        "typeEn": {
+          "call": "Call",
+          "put": "Put"
+        },
+        "typeKo": {
+          "call": "콜",
+          "put": "풋"
+        },
+        "ratioDesc": {
+          "callSpread": "Buy {0} lower-strike call(s) and sell {1} higher-strike calls. Max profit near the short strike; losses are unlimited in a sharp rally.",
+          "putSpread": "Buy {0} higher-strike put(s) and sell {1} lower-strike puts. Max profit near the short strike; losses grow sharply in a crash.",
+          "callBack": "Sell {0} lower-strike call(s) and buy {1} higher-strike calls. Gains in a sharp rally; the largest loss is near the long strike.",
+          "putBack": "Sell {0} higher-strike put(s) and buy {1} lower-strike puts. Gains in a crash; the largest loss is near the long strike."
+        },
+        "stats": "At expiration with current inputs: max profit {0}, max loss {1}{2}.",
+        "flowDebit": "net debit {0}",
+        "flowCredit": "net credit {0}",
+        "flowZero": "zero net premium",
+        "dcDebit": " (Debit)",
+        "dcCredit": " (Credit)",
+        "dcZero": " (Zero Cost)",
+        "warnSameStrike": "Price check: the {1}s at strike {0} have different premiums.",
+        "warnCallOrder": "Price check: at strikes {0} / {1}, the higher-strike call costs more than the lower-strike call.",
+        "warnPutOrder": "Price check: at strikes {0} / {1}, the lower-strike put costs more than the higher-strike put.",
+        "warnWidth": "Price check: the {0} premium difference at strikes {1} / {2} ({3}) is larger than the strike difference ({4}).",
+        "warnConvex": "Price check: {0} prices at strikes {1} / {2} / {3} are not convex, so a butterfly would lock in a riskless profit.",
+        "typeLower": {
+          "call": "call",
+          "put": "put"
+        }
       },
-      "reverseName": "Reverse of {0}",
-      "reverseKo": "{0}의 반대 포지션",
-      "reverseDesc": "Every buy and sell in “{0}” is flipped, so the payoff is mirrored top to bottom.",
-      "brokenDesc": "A butterfly with unequal wing widths (broken wing). Unlike the equidistant version, the two outer zones settle at different P&L levels, so on the wider-wing side you can lose (or make) more than the net premium. See the computed max profit and loss below.",
-      "ratioSpreadName": "{0} Ratio Spread {1}:{2} (OIC: Short Ratio {0} Spread)",
-      "ratioBackName": "{0} Ratio Backspread {1}:{2} (OIC: Long Ratio {0} Spread)",
-      "ratioSpreadKo": "{0} 레이쇼 스프레드 ({1}:{2})",
-      "ratioBackKo": "{0} 레이쇼 백스프레드 ({1}:{2})",
-      "typeEn": {
-        "call": "Call",
-        "put": "Put"
+      "broken": {
+        "long_call_butterfly": {
+          "name": "Broken-Wing Long Call Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 롱 콜 버터플라이 (비대칭)"
+        },
+        "short_call_butterfly": {
+          "name": "Broken-Wing Short Call Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 숏 콜 버터플라이 (비대칭)"
+        },
+        "long_put_butterfly": {
+          "name": "Broken-Wing Long Put Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 롱 풋 버터플라이 (비대칭)"
+        },
+        "short_put_butterfly": {
+          "name": "Broken-Wing Short Put Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 숏 풋 버터플라이 (비대칭)"
+        },
+        "iron_butterfly": {
+          "name": "Broken-Wing Short Iron Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 숏 아이언 버터플라이 (비대칭)"
+        },
+        "long_iron_butterfly": {
+          "name": "Broken-Wing Long Iron Butterfly (Asymmetric)",
+          "ko": "브로큰 윙 롱 아이언 버터플라이 (비대칭)"
+        }
       },
-      "typeKo": {
-        "call": "콜",
-        "put": "풋"
-      },
-      "ratioDesc": {
-        "callSpread": "Buy {0} lower-strike call(s) and sell {1} higher-strike calls. Max profit near the short strike; losses are unlimited in a sharp rally.",
-        "putSpread": "Buy {0} higher-strike put(s) and sell {1} lower-strike puts. Max profit near the short strike; losses grow sharply in a crash.",
-        "callBack": "Sell {0} lower-strike call(s) and buy {1} higher-strike calls. Gains in a sharp rally; the largest loss is near the long strike.",
-        "putBack": "Sell {0} higher-strike put(s) and buy {1} lower-strike puts. Gains in a crash; the largest loss is near the long strike."
-      },
-      "stats": "At current inputs, at expiration: max profit {0}, max loss {1}{2}.",
-      "flowDebit": "net debit {0}",
-      "flowCredit": "net credit {0}",
-      "flowZero": "zero net premium",
-      "dcDebit": " (Debit)",
-      "dcCredit": " (Credit)",
-      "dcZero": " (Zero Cost)",
-      "warnSameStrike": "Price check: the {1}s at strike {0} have different premiums.",
-      "warnCallOrder": "Price check: at strikes {0} / {1}, the higher-strike call costs more than the lower-strike call.",
-      "warnPutOrder": "Price check: at strikes {0} / {1}, the lower-strike put costs more than the higher-strike put.",
-      "warnWidth": "Price check: the {0} premium difference at strikes {1} / {2} ({3}) is larger than the strike difference ({4}).",
-      "warnConvex": "Price check: {0} prices at strikes {1} / {2} / {3} are not convex, so a butterfly would lock in a riskless profit.",
-      "typeLower": {
-        "call": "call",
-        "put": "put"
+      "strategies": {
+        "long_call": {
+          "name": "Long Call",
+          "ko": "롱 콜 (콜옵션 매수)",
+          "desc": "Buy a call. The maximum loss is the premium paid, and profit grows as the underlying rises. Break-even = strike + premium."
+        },
+        "short_call": {
+          "name": "Naked Call (Short Call)",
+          "ko": "숏 콜 (네이키드 콜 매도)",
+          "desc": "Sell a call without holding the underlying. The maximum profit is the premium received; losses are unlimited if the underlying rallies. Break-even = strike + premium."
+        },
+        "long_put": {
+          "name": "Long Put",
+          "ko": "롱 풋 (풋옵션 매수)",
+          "desc": "Buy a put. The maximum loss is the premium; the maximum profit is strike − premium if the underlying falls to zero. Break-even = strike − premium."
+        },
+        "short_put": {
+          "name": "Naked Put (Short Put)",
+          "ko": "숏 풋 (네이키드 풋 매도)",
+          "desc": "Sell a put. The maximum profit is the premium; the maximum loss is strike − premium. Break-even = strike − premium."
+        },
+        "cash_secured_put": {
+          "name": "Cash-Secured Put",
+          "ko": "현금 담보 풋 매도",
+          "desc": "Sell a put while setting aside the cash needed if assigned (strike × quantity × multiplier). The expiration payoff equals a short put; only the collateral differs."
+        },
+        "long_stock": {
+          "name": "Long Stock",
+          "ko": "기초자산 매수",
+          "desc": "Buy the stock or future. A linear payoff: +1 for every 1 the price rises, −1 for every 1 it falls."
+        },
+        "covered_call": {
+          "name": "Covered Call (Buy/Write)",
+          "ko": "커버드 콜",
+          "desc": "Hold the stock and sell a call. Upside is capped at the strike in exchange for a premium cushion. At expiration the payoff matches a short put at the same strike (put-call parity)."
+        },
+        "protective_put": {
+          "name": "Protective Put (Married Put)",
+          "ko": "프로텍티브 풋",
+          "desc": "Hold the stock and buy a put. The downside is limited to entry − strike + premium, like insurance. The payoff matches a long call at the same strike."
+        },
+        "collar": {
+          "name": "Collar (Protective Collar)",
+          "ko": "칼라",
+          "desc": "Long stock + buy an OTM put + sell an OTM call. P&L is bounded between the two strikes; if the call premium pays for the put, it is a zero-cost collar. Shaped like a bull vertical spread."
+        },
+        "covered_put": {
+          "name": "Covered Put",
+          "ko": "커버드 풋",
+          "desc": "Short the stock and sell a put. Downside gains are capped at the strike, and losses are unlimited if the stock rallies. The payoff matches a short call at the same strike."
+        },
+        "bull_call_spread": {
+          "name": "Bull Call Spread",
+          "ko": "강세 콜 스프레드",
+          "desc": "Buy a lower-strike call and sell a higher-strike call. Max profit = strike width − net debit; max loss = net debit."
+        },
+        "bear_call_spread": {
+          "name": "Bear Call Spread",
+          "ko": "약세 콜 스프레드",
+          "desc": "Sell a lower-strike call and buy a higher-strike call. Max profit = net credit; max loss = strike width − net credit."
+        },
+        "bull_put_spread": {
+          "name": "Bull Put Spread",
+          "ko": "강세 풋 스프레드",
+          "desc": "Buy a lower-strike put and sell a higher-strike put. Max profit = net credit; max loss = strike width − net credit."
+        },
+        "bear_put_spread": {
+          "name": "Bear Put Spread",
+          "ko": "약세 풋 스프레드",
+          "desc": "Sell a lower-strike put and buy a higher-strike put. Max profit = strike width − net debit; max loss = net debit."
+        },
+        "long_straddle": {
+          "name": "Long Straddle",
+          "ko": "롱 스트래들",
+          "desc": "Buy a call and a put at the same strike. Profits from a large move in either direction. Max loss = both premiums; break-evens = strike ± total premium."
+        },
+        "short_straddle": {
+          "name": "Short Straddle",
+          "ko": "숏 스트래들",
+          "desc": "Sell a call and a put at the same strike. Max profit (both premiums) if expiration is near the strike; upside loss is unlimited and downside loss is large."
+        },
+        "long_strangle": {
+          "name": "Long Strangle",
+          "ko": "롱 스트랭글",
+          "desc": "Buy an OTM put (lower strike) and an OTM call (higher strike). Cheaper than a straddle, but it needs a bigger move to profit."
+        },
+        "short_strangle": {
+          "name": "Short Strangle",
+          "ko": "숏 스트랭글",
+          "desc": "Sell an OTM put and an OTM call. Keep both premiums if expiration lands between the strikes; both tails carry large risk."
+        },
+        "long_call_butterfly": {
+          "name": "Long Call Butterfly",
+          "ko": "롱 콜 버터플라이",
+          "desc": "Buy 1 call at K1, sell 2 at K2, and buy 1 at K3, with equally spaced strikes. Profit peaks near the middle strike; P&L is flat outside the wings."
+        },
+        "iron_butterfly": {
+          "name": "Short Iron Butterfly",
+          "ko": "숏 아이언 버터플라이",
+          "desc": "A short straddle with equidistant long put and call wings (often just called an iron butterfly). Profit peaks near the middle strike; losses are capped at the wings."
+        },
+        "iron_condor": {
+          "name": "Iron Condor (Short Iron Condor)",
+          "ko": "아이언 콘도르",
+          "desc": "Bull put spread + bear call spread. Max profit (net credit) between the two middle strikes; max loss = wider wing − net credit."
+        },
+        "synthetic_long": {
+          "name": "Synthetic Long Stock",
+          "ko": "합성 선물 매수",
+          "desc": "Buy a call and sell a put at the same strike. By put-call parity the payoff has a slope of 1, like owning the underlying."
+        },
+        "risk_reversal": {
+          "name": "Risk Reversal (Bullish: Short Put + Long Call)",
+          "ko": "리스크 리버설 (강세: 풋 매도 + 콜 매수)",
+          "desc": "Sell an OTM put to pay for an OTM call. Flat between the strikes, unlimited upside, and growing losses below the put strike."
+        },
+        "call_ratio_spread": {
+          "name": "Call Ratio Spread 1:2 (OIC: Short Ratio Call Spread)",
+          "ko": "콜 레이쇼 스프레드 (1:2)",
+          "desc": "Buy 1 lower-strike call and sell 2 higher-strike calls. Max profit near the higher strike; losses are unlimited in a sharp rally."
+        },
+        "put_backspread": {
+          "name": "Put Ratio Backspread 1:2 (OIC: Long Ratio Put Spread)",
+          "ko": "풋 레이쇼 백스프레드 (1:2)",
+          "desc": "Sell 1 higher-strike put and buy 2 lower-strike puts. Large profit in a crash, max loss near the lower strike, and a fixed result (net credit or debit) on the upside."
+        },
+        "short_stock": {
+          "name": "Short Stock",
+          "ko": "기초자산 공매도",
+          "desc": "Short the stock or future. Profits as the price falls; losses are unlimited as it rises."
+        },
+        "protective_call": {
+          "name": "Protective Call (OIC: Synthetic Long Put)",
+          "ko": "프로텍티브 콜 (합성 롱 풋)",
+          "desc": "Short stock plus a long call that caps the upside risk. The payoff matches a long put at the same strike."
+        },
+        "short_collar": {
+          "name": "Collar on Short Stock (Short Stock + Long Call + Short Put)",
+          "ko": "칼라 (공매도 헤지: 공매도 + 콜 매수 + 풋 매도)",
+          "desc": "Short stock hedged with a long call (caps upside risk) and a short put (pays for it). P&L is bounded between the two strikes."
+        },
+        "conversion": {
+          "name": "Conversion",
+          "ko": "컨버전",
+          "desc": "Long stock + long put + short call at the same strike. The expiration result is fixed regardless of price. Financing cost (interest) is not modeled, so the fixed amount can look like a free profit."
+        },
+        "reversal": {
+          "name": "Reversal (Reverse Conversion)",
+          "ko": "리버설 (리버스 컨버전)",
+          "desc": "Short stock + long call + short put at the same strike. The expiration result is fixed regardless of price. Financing cost (interest) is not modeled."
+        },
+        "ratio_write": {
+          "name": "Ratio Write (1 Stock : 2 Short Calls)",
+          "ko": "레이쇼 라이트 (주식 1 + 콜 2 매도)",
+          "desc": "Sell 2 calls per unit of stock. Half is covered and half is naked, so losses are unlimited in a sharp rally."
+        },
+        "covered_ratio": {
+          "name": "Covered Ratio Spread",
+          "ko": "커버드 레이쇼 스프레드",
+          "desc": "Long stock + sell 2 lower-strike calls + buy 1 higher-strike call (OIC). Best result near the short-call strike; above it the profit erodes and then levels off."
+        },
+        "stock_repair": {
+          "name": "Stock Repair",
+          "ko": "스톡 리페어",
+          "desc": "Long stock + buy 1 call + sell 2 higher-strike calls (OIC). Lowers the break-even at little or no cost, but gives up gains above the higher strike."
+        },
+        "synthetic_short": {
+          "name": "Synthetic Short Stock",
+          "ko": "합성 선물 매도",
+          "desc": "Sell a call and buy a put at the same strike. By put-call parity the payoff has a slope of −1, like shorting the underlying."
+        },
+        "risk_reversal_bear": {
+          "name": "Risk Reversal (Bearish: Long Put + Short Call)",
+          "ko": "리스크 리버설 (약세: 풋 매수 + 콜 매도)",
+          "desc": "Sell an OTM call to pay for an OTM put. Flat between the strikes, gains below, and unlimited losses above."
+        },
+        "strap": {
+          "name": "Long Strap",
+          "ko": "롱 스트랩 (콜 2 + 풋 1)",
+          "desc": "Buy 2 calls and 1 put at the same strike (Hull). A straddle tilted toward the upside."
+        },
+        "short_strap": {
+          "name": "Short Strap",
+          "ko": "숏 스트랩 (콜 2 + 풋 1 매도)",
+          "desc": "Sell 2 calls and 1 put at the same strike. Profits near the strike; losses are unlimited in a rally."
+        },
+        "strip": {
+          "name": "Long Strip",
+          "ko": "롱 스트립 (콜 1 + 풋 2)",
+          "desc": "Buy 1 call and 2 puts at the same strike (Hull). A straddle tilted toward the downside."
+        },
+        "short_strip": {
+          "name": "Short Strip",
+          "ko": "숏 스트립 (콜 1 + 풋 2 매도)",
+          "desc": "Sell 1 call and 2 puts at the same strike. Profits near the strike; losses grow on either side."
+        },
+        "long_guts": {
+          "name": "Long Guts",
+          "ko": "롱 거츠",
+          "desc": "Buy an ITM call (lower strike) and an ITM put (higher strike), an OIC strangle variation. Same shape as a strangle, with higher premiums."
+        },
+        "short_guts": {
+          "name": "Short Guts",
+          "ko": "숏 거츠",
+          "desc": "Sell an ITM call and an ITM put. Best result between the strikes; large moves in either direction lose."
+        },
+        "short_call_butterfly": {
+          "name": "Short Call Butterfly",
+          "ko": "숏 콜 버터플라이",
+          "desc": "Sell 1 call at K1, buy 2 at K2, and sell 1 at K3, with equally spaced strikes. The largest loss is near the middle strike; P&L is flat outside the wings."
+        },
+        "long_put_butterfly": {
+          "name": "Long Put Butterfly",
+          "ko": "롱 풋 버터플라이",
+          "desc": "Buy 1 put at K1, sell 2 at K2, and buy 1 at K3, with equally spaced strikes. Profit peaks near the middle strike."
+        },
+        "short_put_butterfly": {
+          "name": "Short Put Butterfly",
+          "ko": "숏 풋 버터플라이",
+          "desc": "Sell 1 put at K1, buy 2 at K2, and sell 1 at K3, with equally spaced strikes. The largest loss is near the middle strike."
+        },
+        "long_iron_butterfly": {
+          "name": "Long Iron Butterfly",
+          "ko": "롱 아이언 버터플라이",
+          "desc": "A long straddle with equidistant short put and call wings (OIC). Profits from a large move, capped at the wings."
+        },
+        "long_iron_condor": {
+          "name": "Long Iron Condor",
+          "ko": "롱 아이언 콘도르",
+          "desc": "Bear put spread + bull call spread. Max profit beyond the outer strikes; the net debit is lost in the middle zone."
+        },
+        "long_call_condor": {
+          "name": "Long Call Condor",
+          "ko": "롱 콜 콘도르",
+          "desc": "Buy, sell, sell, and buy calls at four strikes (OIC). Max profit between the two middle strikes."
+        },
+        "short_call_condor": {
+          "name": "Short Call Condor",
+          "ko": "숏 콜 콘도르",
+          "desc": "Sell, buy, buy, and sell calls at four strikes. Max profit beyond the outer strikes."
+        },
+        "long_put_condor": {
+          "name": "Long Put Condor",
+          "ko": "롱 풋 콘도르",
+          "desc": "Buy, sell, sell, and buy puts at four strikes. Max profit between the two middle strikes."
+        },
+        "short_put_condor": {
+          "name": "Short Put Condor",
+          "ko": "숏 풋 콘도르",
+          "desc": "Sell, buy, buy, and sell puts at four strikes. Max profit beyond the outer strikes."
+        },
+        "long_box": {
+          "name": "Long Box",
+          "ko": "롱 박스",
+          "desc": "Bull call spread + bear put spread on the same two strikes. The expiration value is fixed at the strike width (Hull). Financing cost (interest) is not modeled."
+        },
+        "short_box": {
+          "name": "Short Box",
+          "ko": "숏 박스",
+          "desc": "Bear call spread + bull put spread on the same two strikes. You receive cash now and pay the strike width at expiration. Financing cost (interest) is not modeled."
+        },
+        "long_call_ladder": {
+          "name": "Long Call Ladder (Buy 1, Sell 2 Higher Calls)",
+          "ko": "롱 콜 래더 (콜 1 매수 + 상위 콜 2개 매도)",
+          "desc": "A bull call spread plus one more short call at a higher strike. Best in the middle zone; losses are unlimited in a sharp rally."
+        },
+        "short_call_ladder": {
+          "name": "Short Call Ladder (Sell 1, Buy 2 Higher Calls)",
+          "ko": "숏 콜 래더 (콜 1 매도 + 상위 콜 2개 매수)",
+          "desc": "A bear call spread plus one more long call at a higher strike. Gains in a sharp rally."
+        },
+        "long_put_ladder": {
+          "name": "Long Put Ladder (Buy 1, Sell 2 Lower Puts)",
+          "ko": "롱 풋 래더 (풋 1 매수 + 하위 풋 2개 매도)",
+          "desc": "A bear put spread plus one more short put at a lower strike. Best in the middle zone; losses grow in a crash."
+        },
+        "short_put_ladder": {
+          "name": "Short Put Ladder (Sell 1, Buy 2 Lower Puts)",
+          "ko": "숏 풋 래더 (풋 1 매도 + 하위 풋 2개 매수)",
+          "desc": "A bull put spread plus one more long put at a lower strike. Gains in a crash."
+        },
+        "seagull_bull": {
+          "name": "Seagull (Bullish: Short Put + Bull Call Spread)",
+          "ko": "시걸 (강세: 풋 매도 + 강세 콜 스프레드)",
+          "desc": "Sell a lower-strike put to fund a bull call spread. Upside is capped at the top strike; losses grow below the put strike."
+        },
+        "seagull_bear": {
+          "name": "Seagull (Bearish: Short Call + Bear Put Spread)",
+          "ko": "시걸 (약세: 콜 매도 + 약세 풋 스프레드)",
+          "desc": "Sell a higher-strike call to fund a bear put spread. Downside gains are capped at the low strike; losses are unlimited above the call strike."
+        }
       }
     },
-    "broken": {
-      "long_call_butterfly": {
-        "name": "Broken-Wing Long Call Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 롱 콜 버터플라이 (비대칭)"
+    "ko": {
+      "ui": {
+        "unlimited": "무제한",
+        "negUnlimited": "−무제한",
+        "none": "없음",
+        "chartTitle": "만기 손익 그래프",
+        "chartAria": "만기 손익 차트",
+        "emptyTitle": "전략을 추가해 비교해 보세요",
+        "emptyBody": "전략 구성에서 ‘+ 전략 추가’를 누른 뒤 레그를 넣으면 만기 손익 그래프가 그려집니다. 최대 3개까지 겹쳐 비교할 수 있어요.",
+        "summaryTitle": "전략 비교",
+        "thead": [
+          "전략",
+          "구성",
+          "초기 현금흐름",
+          "최대 이익",
+          "최대 손실",
+          "손익분기점"
+        ],
+        "summaryNote": "금액은 (옵션 1단위 손익) × 수량 × 계약 승수입니다. 초기 현금흐름은 옵션 프리미엄만 집계하며 +는 수취, −는 지불입니다.",
+        "tableEmpty": "아직 비교할 전략이 없습니다.",
+        "marketTitle": "시장 입력",
+        "fieldS": "현재가 S₀",
+        "fieldIv": "내재변동성",
+        "fieldDays": "잔존일수",
+        "unitDays": "일",
+        "fieldR": "무위험이자율",
+        "fieldMult": "계약 승수",
+        "autoPrice": "블랙-숄즈 이론가로 프리미엄 자동 계산(끄면 직접 입력)",
+        "templateAria": "표준 전략 템플릿",
+        "templatePlaceholder": "표준 전략 템플릿 불러오기 (선택)",
+        "addCall": "+ 콜",
+        "addPut": "+ 풋",
+        "addStock": "+ 기초자산",
+        "editorTitle": "전략 구성",
+        "addSlot": "+ 전략 추가",
+        "save": "저장",
+        "share": "공유 링크 복사",
+        "reset": "초기화",
+        "storageNote": "설정은 바뀔 때마다 자동 저장되며, 이 브라우저의 localStorage에만 남습니다. 서버로 전송되지 않고 쿠키도 쓰지 않습니다.",
+        "stLoadedUrl": "공유 링크의 설정을 불러왔어요.",
+        "stLoadedLocal": "이 브라우저에 저장된 직전 설정을 불러왔어요.",
+        "stSaved": "이 브라우저에 저장했어요.",
+        "stSaveFail": "저장하지 못했어요. 이 브라우저가 localStorage를 막고 있어요.",
+        "stReset": "저장한 설정을 지우고 처음부터 시작합니다.",
+        "stShared": "공유 링크를 복사했어요.",
+        "errMarket": "입력값을 확인해 주세요. 허용 범위는 {0}~{1}{2}입니다. 지금은 이전 값을 유지합니다.",
+        "errLeg": "입력값을 확인해 주세요. 허용 범위는 {0}~{1}{2}입니다.",
+        "wholeNumber": " (정수)",
+        "errMaxLegs": "전략당 레그는 최대 {0}개까지입니다.",
+        "tabShowAria": "전략 {0} 그래프 표시",
+        "tabDeleteAria": "전략 {0} 삭제",
+        "expiryNote": "모든 레그는 같은 만기로 계산합니다(유럽형, 만기 손익 기준).",
+        "legsEmpty": "아래 버튼으로 콜·풋·기초자산 레그를 추가하거나, 표준 전략 템플릿을 불러오세요.",
+        "typeCall": "콜",
+        "typePut": "풋",
+        "typeStock": "기초자산",
+        "sideBuy": "매수",
+        "sideSell": "매도",
+        "sideShort": "공매도",
+        "legTypeAria": "레그 {0} 종류",
+        "legSideAria": "레그 {0} 방향",
+        "legFieldAria": "레그 {0} {1}",
+        "legDeleteAria": "레그 {0} 삭제",
+        "qty": "수량",
+        "entry": "진입가",
+        "strike": "행사가",
+        "premium": "프리미엄",
+        "autoTitle": "자동 계산 중(블랙-숄즈 체크를 끄면 직접 입력)",
+        "compStock": "기초자산 {0}",
+        "compLong": "매수",
+        "compShort": "공매도",
+        "compOpt": "{2} {1} {0}",
+        "readoutHint": "그래프를 가리키거나 탭하면 그 만기 가격에서의 손익을 비교합니다. 점은 손익분기점입니다.",
+        "readoutAt": "만기 가격 {0} ({1}%)에서",
+        "koLabel": "",
+        "langToggleAria": "언어 전환",
+        "langKo": "한글",
+        "langEn": "ENG"
       },
-      "short_call_butterfly": {
-        "name": "Broken-Wing Short Call Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 숏 콜 버터플라이 (비대칭)"
+      "groups": {
+        "basic": "기본",
+        "stock": "주식 + 옵션",
+        "vertical": "수직 스프레드",
+        "volatility": "변동성",
+        "range": "구간형(버터플라이·콘도르)",
+        "synthetic": "합성·비율"
       },
-      "long_put_butterfly": {
-        "name": "Broken-Wing Long Put Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 롱 풋 버터플라이 (비대칭)"
+      "naming": {
+        "empty": {
+          "name": "빈 전략",
+          "ko": "Empty strategy",
+          "desc": "레그를 추가하거나 표준 전략 템플릿을 불러오세요."
+        },
+        "offset": {
+          "name": "포지션 없음(상쇄됨)",
+          "ko": "No net position (offsetting)",
+          "desc": "매수·매도 레그가 서로 상쇄되어 순포지션이 없습니다. 만기 손익은 프리미엄 차이만 남습니다."
+        },
+        "custom": {
+          "name": "사용자 정의 전략",
+          "ko": "Custom strategy",
+          "desc": "표준 전략 목록과 구조가 다른 조합입니다. 아래 지표와 그래프로 손익을 확인하세요."
+        },
+        "reverseName": "{0}의 반대 포지션",
+        "reverseKo": "Reverse of {0}",
+        "reverseDesc": "‘{0}’의 매수·매도를 모두 뒤집은 구성입니다. 손익 그래프가 위아래로 뒤집힙니다.",
+        "brokenDesc": "날개 간격이 서로 다른 버터플라이(브로큰 윙)입니다. 등간격일 때와 달리 바깥쪽 두 구간의 손익이 달라서, 넓은 날개 쪽에서는 순현금흐름보다 더 잃거나 더 얻을 수 있습니다. 최대 이익·손실은 아래 계산값을 확인하세요.",
+        "ratioSpreadName": "{0} 레이쇼 스프레드 ({1}:{2})",
+        "ratioBackName": "{0} 레이쇼 백스프레드 ({1}:{2})",
+        "ratioSpreadKo": "{0} Ratio Spread {1}:{2} (OIC: Short Ratio {0} Spread)",
+        "ratioBackKo": "{0} Ratio Backspread {1}:{2} (OIC: Long Ratio {0} Spread)",
+        "typeEn": {
+          "call": "Call",
+          "put": "Put"
+        },
+        "typeKo": {
+          "call": "콜",
+          "put": "풋"
+        },
+        "ratioDesc": {
+          "callSpread": "낮은 행사가 콜 {0}개 매수 + 높은 행사가 콜 {1}개 매도. 매도 행사가 근처에서 이익이 가장 크고, 급등하면 손실이 제한 없이 커진다.",
+          "putSpread": "높은 행사가 풋 {0}개 매수 + 낮은 행사가 풋 {1}개 매도. 매도 행사가 근처에서 이익이 가장 크고, 폭락하면 손실이 크게 커진다.",
+          "callBack": "낮은 행사가 콜 {0}개 매도 + 높은 행사가 콜 {1}개 매수. 급등하면 이익이 커지고, 매수 행사가 근처에서 손실이 가장 크다.",
+          "putBack": "높은 행사가 풋 {0}개 매도 + 낮은 행사가 풋 {1}개 매수. 폭락하면 이익이 커지고, 매수 행사가 근처에서 손실이 가장 크다."
+        },
+        "stats": "현재 입력 기준 만기 손익 — 최대 이익 {0}, 최대 손실 {1}{2}.",
+        "flowDebit": "순지불 {0}",
+        "flowCredit": "순수취 {0}",
+        "flowZero": "순프리미엄 0",
+        "dcDebit": " (순지불)",
+        "dcCredit": " (순수취)",
+        "dcZero": " (제로코스트)",
+        "warnSameStrike": "가격 확인: 행사가 {0} {1}의 프리미엄이 서로 다릅니다.",
+        "warnCallOrder": "가격 확인: 행사가 {0} / {1}에서 높은 행사가 콜이 낮은 행사가 콜보다 비쌉니다.",
+        "warnPutOrder": "가격 확인: 행사가 {0} / {1}에서 낮은 행사가 풋이 높은 행사가 풋보다 비쌉니다.",
+        "warnWidth": "가격 확인: 행사가 {1} / {2} {0} 프리미엄 차이({3})가 행사가 차이({4})보다 큽니다.",
+        "warnConvex": "가격 확인: 행사가 {1} / {2} / {3} {0} 가격이 볼록하지 않아 버터플라이로 무위험 이익이 생깁니다.",
+        "typeLower": {
+          "call": "콜",
+          "put": "풋"
+        }
       },
-      "short_put_butterfly": {
-        "name": "Broken-Wing Short Put Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 숏 풋 버터플라이 (비대칭)"
+      "broken": {
+        "long_call_butterfly": {
+          "name": "브로큰 윙 롱 콜 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Long Call Butterfly (Asymmetric)"
+        },
+        "short_call_butterfly": {
+          "name": "브로큰 윙 숏 콜 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Short Call Butterfly (Asymmetric)"
+        },
+        "long_put_butterfly": {
+          "name": "브로큰 윙 롱 풋 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Long Put Butterfly (Asymmetric)"
+        },
+        "short_put_butterfly": {
+          "name": "브로큰 윙 숏 풋 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Short Put Butterfly (Asymmetric)"
+        },
+        "iron_butterfly": {
+          "name": "브로큰 윙 숏 아이언 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Short Iron Butterfly (Asymmetric)"
+        },
+        "long_iron_butterfly": {
+          "name": "브로큰 윙 롱 아이언 버터플라이 (비대칭)",
+          "ko": "Broken-Wing Long Iron Butterfly (Asymmetric)"
+        }
       },
-      "iron_butterfly": {
-        "name": "Broken-Wing Short Iron Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 숏 아이언 버터플라이 (비대칭)"
-      },
-      "long_iron_butterfly": {
-        "name": "Broken-Wing Long Iron Butterfly (Asymmetric)",
-        "ko": "브로큰 윙 롱 아이언 버터플라이 (비대칭)"
-      }
-    },
-    "strategies": {
-      "long_call": {
-        "name": "Long Call",
-        "ko": "롱 콜 (콜옵션 매수)",
-        "desc": "Buy a call. The maximum loss is the premium paid, and profit grows as the underlying rises. Break-even = strike + premium."
-      },
-      "short_call": {
-        "name": "Naked Call (Short Call)",
-        "ko": "숏 콜 (네이키드 콜 매도)",
-        "desc": "Sell a call without holding the underlying. The maximum profit is the premium received; losses are unlimited if the underlying rallies. Break-even = strike + premium."
-      },
-      "long_put": {
-        "name": "Long Put",
-        "ko": "롱 풋 (풋옵션 매수)",
-        "desc": "Buy a put. The maximum loss is the premium; the maximum profit is strike − premium if the underlying falls to zero. Break-even = strike − premium."
-      },
-      "short_put": {
-        "name": "Naked Put (Short Put)",
-        "ko": "숏 풋 (네이키드 풋 매도)",
-        "desc": "Sell a put. The maximum profit is the premium; the maximum loss is strike − premium. Break-even = strike − premium."
-      },
-      "cash_secured_put": {
-        "name": "Cash-Secured Put",
-        "ko": "현금 담보 풋 매도",
-        "desc": "Sell a put while setting aside the cash needed if assigned (strike × quantity × multiplier). The expiration payoff equals a short put; only the collateral differs."
-      },
-      "long_stock": {
-        "name": "Long Stock",
-        "ko": "기초자산 매수",
-        "desc": "Buy the stock or future. A linear payoff: +1 for every 1 the price rises, −1 for every 1 it falls."
-      },
-      "covered_call": {
-        "name": "Covered Call (Buy/Write)",
-        "ko": "커버드 콜",
-        "desc": "Hold the stock and sell a call. Upside is capped at the strike in exchange for a premium cushion. At expiration the payoff matches a short put at the same strike (put-call parity)."
-      },
-      "protective_put": {
-        "name": "Protective Put (Married Put)",
-        "ko": "프로텍티브 풋",
-        "desc": "Hold the stock and buy a put. The downside is limited to entry − strike + premium, like insurance. The payoff matches a long call at the same strike."
-      },
-      "collar": {
-        "name": "Collar (Protective Collar)",
-        "ko": "칼라",
-        "desc": "Long stock + buy an OTM put + sell an OTM call. P&L is bounded between the two strikes; if the call premium pays for the put, it is a zero-cost collar. Shaped like a bull vertical spread."
-      },
-      "covered_put": {
-        "name": "Covered Put",
-        "ko": "커버드 풋",
-        "desc": "Short the stock and sell a put. Downside gains are capped at the strike, and losses are unlimited if the stock rallies. The payoff matches a short call at the same strike."
-      },
-      "bull_call_spread": {
-        "name": "Bull Call Spread",
-        "ko": "강세 콜 스프레드",
-        "desc": "Buy a lower-strike call and sell a higher-strike call. Max profit = strike width − net debit; max loss = net debit."
-      },
-      "bear_call_spread": {
-        "name": "Bear Call Spread",
-        "ko": "약세 콜 스프레드",
-        "desc": "Sell a lower-strike call and buy a higher-strike call. Max profit = net credit; max loss = strike width − net credit."
-      },
-      "bull_put_spread": {
-        "name": "Bull Put Spread",
-        "ko": "강세 풋 스프레드",
-        "desc": "Buy a lower-strike put and sell a higher-strike put. Max profit = net credit; max loss = strike width − net credit."
-      },
-      "bear_put_spread": {
-        "name": "Bear Put Spread",
-        "ko": "약세 풋 스프레드",
-        "desc": "Sell a lower-strike put and buy a higher-strike put. Max profit = strike width − net debit; max loss = net debit."
-      },
-      "long_straddle": {
-        "name": "Long Straddle",
-        "ko": "롱 스트래들",
-        "desc": "Buy a call and a put at the same strike. Profits from a large move in either direction. Max loss = both premiums; break-evens = strike ± total premium."
-      },
-      "short_straddle": {
-        "name": "Short Straddle",
-        "ko": "숏 스트래들",
-        "desc": "Sell a call and a put at the same strike. Max profit (both premiums) if expiration is near the strike; upside loss is unlimited and downside loss is large."
-      },
-      "long_strangle": {
-        "name": "Long Strangle",
-        "ko": "롱 스트랭글",
-        "desc": "Buy an OTM put (lower strike) and an OTM call (higher strike). Cheaper than a straddle, but it needs a bigger move to profit."
-      },
-      "short_strangle": {
-        "name": "Short Strangle",
-        "ko": "숏 스트랭글",
-        "desc": "Sell an OTM put and an OTM call. Keep both premiums if expiration lands between the strikes; both tails carry large risk."
-      },
-      "long_call_butterfly": {
-        "name": "Long Call Butterfly",
-        "ko": "롱 콜 버터플라이",
-        "desc": "Buy 1 call at K1, sell 2 at K2, and buy 1 at K3, with equally spaced strikes. Profit peaks near the middle strike; P&L is flat outside the wings."
-      },
-      "iron_butterfly": {
-        "name": "Short Iron Butterfly",
-        "ko": "숏 아이언 버터플라이",
-        "desc": "A short straddle with equidistant long put and call wings (often just called an iron butterfly). Profit peaks near the middle strike; losses are capped at the wings."
-      },
-      "iron_condor": {
-        "name": "Iron Condor (Short Iron Condor)",
-        "ko": "아이언 콘도르",
-        "desc": "Bull put spread + bear call spread. Max profit (net credit) between the two middle strikes; max loss = wider wing − net credit."
-      },
-      "synthetic_long": {
-        "name": "Synthetic Long Stock",
-        "ko": "합성 선물 매수",
-        "desc": "Buy a call and sell a put at the same strike. By put-call parity the payoff has a slope of 1, like owning the underlying."
-      },
-      "risk_reversal": {
-        "name": "Risk Reversal (Bullish: Short Put + Long Call)",
-        "ko": "리스크 리버설 (강세: 풋 매도 + 콜 매수)",
-        "desc": "Sell an OTM put to pay for an OTM call. Flat between the strikes, unlimited upside, and growing losses below the put strike."
-      },
-      "call_ratio_spread": {
-        "name": "Call Ratio Spread 1:2 (OIC: Short Ratio Call Spread)",
-        "ko": "콜 레이쇼 스프레드 (1:2)",
-        "desc": "Buy 1 lower-strike call and sell 2 higher-strike calls. Max profit near the higher strike; losses are unlimited in a sharp rally."
-      },
-      "put_backspread": {
-        "name": "Put Ratio Backspread 1:2 (OIC: Long Ratio Put Spread)",
-        "ko": "풋 레이쇼 백스프레드 (1:2)",
-        "desc": "Sell 1 higher-strike put and buy 2 lower-strike puts. Large profit in a crash, max loss near the lower strike, and a fixed result (net credit or debit) on the upside."
-      },
-      "short_stock": {
-        "name": "Short Stock",
-        "ko": "기초자산 공매도",
-        "desc": "Short the stock or future. Profits as the price falls; losses are unlimited as it rises."
-      },
-      "protective_call": {
-        "name": "Protective Call (OIC: Synthetic Long Put)",
-        "ko": "프로텍티브 콜 (합성 롱 풋)",
-        "desc": "Short stock plus a long call that caps the upside risk. The payoff matches a long put at the same strike."
-      },
-      "short_collar": {
-        "name": "Collar on Short Stock (Short Stock + Long Call + Short Put)",
-        "ko": "칼라 (공매도 헤지: 공매도 + 콜 매수 + 풋 매도)",
-        "desc": "Short stock hedged with a long call (caps upside risk) and a short put (pays for it). P&L is bounded between the two strikes."
-      },
-      "conversion": {
-        "name": "Conversion",
-        "ko": "컨버전",
-        "desc": "Long stock + long put + short call at the same strike. The expiration result is fixed regardless of price. Financing cost (interest) is not modeled, so the fixed amount can look like a free profit."
-      },
-      "reversal": {
-        "name": "Reversal (Reverse Conversion)",
-        "ko": "리버설 (리버스 컨버전)",
-        "desc": "Short stock + long call + short put at the same strike. The expiration result is fixed regardless of price. Financing cost (interest) is not modeled."
-      },
-      "ratio_write": {
-        "name": "Ratio Write (1 Stock : 2 Short Calls)",
-        "ko": "레이쇼 라이트 (주식 1 + 콜 2 매도)",
-        "desc": "Sell 2 calls per unit of stock. Half is covered and half is naked, so losses are unlimited in a sharp rally."
-      },
-      "covered_ratio": {
-        "name": "Covered Ratio Spread",
-        "ko": "커버드 레이쇼 스프레드",
-        "desc": "Long stock + sell 2 lower-strike calls + buy 1 higher-strike call (OIC). Best result near the short-call strike; above it the profit erodes and then levels off."
-      },
-      "stock_repair": {
-        "name": "Stock Repair",
-        "ko": "스톡 리페어",
-        "desc": "Long stock + buy 1 call + sell 2 higher-strike calls (OIC). Lowers the break-even at little or no cost, but gives up gains above the higher strike."
-      },
-      "synthetic_short": {
-        "name": "Synthetic Short Stock",
-        "ko": "합성 선물 매도",
-        "desc": "Sell a call and buy a put at the same strike. By put-call parity the payoff has a slope of −1, like shorting the underlying."
-      },
-      "risk_reversal_bear": {
-        "name": "Risk Reversal (Bearish: Long Put + Short Call)",
-        "ko": "리스크 리버설 (약세: 풋 매수 + 콜 매도)",
-        "desc": "Sell an OTM call to pay for an OTM put. Flat between the strikes, gains below, and unlimited losses above."
-      },
-      "strap": {
-        "name": "Long Strap",
-        "ko": "롱 스트랩 (콜 2 + 풋 1)",
-        "desc": "Buy 2 calls and 1 put at the same strike (Hull). A straddle tilted toward the upside."
-      },
-      "short_strap": {
-        "name": "Short Strap",
-        "ko": "숏 스트랩 (콜 2 + 풋 1 매도)",
-        "desc": "Sell 2 calls and 1 put at the same strike. Profits near the strike; losses are unlimited in a rally."
-      },
-      "strip": {
-        "name": "Long Strip",
-        "ko": "롱 스트립 (콜 1 + 풋 2)",
-        "desc": "Buy 1 call and 2 puts at the same strike (Hull). A straddle tilted toward the downside."
-      },
-      "short_strip": {
-        "name": "Short Strip",
-        "ko": "숏 스트립 (콜 1 + 풋 2 매도)",
-        "desc": "Sell 1 call and 2 puts at the same strike. Profits near the strike; losses grow on either side."
-      },
-      "long_guts": {
-        "name": "Long Guts",
-        "ko": "롱 거츠",
-        "desc": "Buy an ITM call (lower strike) and an ITM put (higher strike), an OIC strangle variation. Same shape as a strangle, with higher premiums."
-      },
-      "short_guts": {
-        "name": "Short Guts",
-        "ko": "숏 거츠",
-        "desc": "Sell an ITM call and an ITM put. Best result between the strikes; large moves in either direction lose."
-      },
-      "short_call_butterfly": {
-        "name": "Short Call Butterfly",
-        "ko": "숏 콜 버터플라이",
-        "desc": "Sell 1 call at K1, buy 2 at K2, and sell 1 at K3, with equally spaced strikes. The largest loss is near the middle strike; P&L is flat outside the wings."
-      },
-      "long_put_butterfly": {
-        "name": "Long Put Butterfly",
-        "ko": "롱 풋 버터플라이",
-        "desc": "Buy 1 put at K1, sell 2 at K2, and buy 1 at K3, with equally spaced strikes. Profit peaks near the middle strike."
-      },
-      "short_put_butterfly": {
-        "name": "Short Put Butterfly",
-        "ko": "숏 풋 버터플라이",
-        "desc": "Sell 1 put at K1, buy 2 at K2, and sell 1 at K3, with equally spaced strikes. The largest loss is near the middle strike."
-      },
-      "long_iron_butterfly": {
-        "name": "Long Iron Butterfly",
-        "ko": "롱 아이언 버터플라이",
-        "desc": "A long straddle with equidistant short put and call wings (OIC). Profits from a large move, capped at the wings."
-      },
-      "long_iron_condor": {
-        "name": "Long Iron Condor",
-        "ko": "롱 아이언 콘도르",
-        "desc": "Bear put spread + bull call spread. Max profit beyond the outer strikes; the net debit is lost in the middle zone."
-      },
-      "long_call_condor": {
-        "name": "Long Call Condor",
-        "ko": "롱 콜 콘도르",
-        "desc": "Buy, sell, sell, and buy calls at four strikes (OIC). Max profit between the two middle strikes."
-      },
-      "short_call_condor": {
-        "name": "Short Call Condor",
-        "ko": "숏 콜 콘도르",
-        "desc": "Sell, buy, buy, and sell calls at four strikes. Max profit beyond the outer strikes."
-      },
-      "long_put_condor": {
-        "name": "Long Put Condor",
-        "ko": "롱 풋 콘도르",
-        "desc": "Buy, sell, sell, and buy puts at four strikes. Max profit between the two middle strikes."
-      },
-      "short_put_condor": {
-        "name": "Short Put Condor",
-        "ko": "숏 풋 콘도르",
-        "desc": "Sell, buy, buy, and sell puts at four strikes. Max profit beyond the outer strikes."
-      },
-      "long_box": {
-        "name": "Long Box",
-        "ko": "롱 박스",
-        "desc": "Bull call spread + bear put spread on the same two strikes. The expiration value is fixed at the strike width (Hull). Financing cost (interest) is not modeled."
-      },
-      "short_box": {
-        "name": "Short Box",
-        "ko": "숏 박스",
-        "desc": "Bear call spread + bull put spread on the same two strikes. You receive cash now and pay the strike width at expiration. Financing cost (interest) is not modeled."
-      },
-      "long_call_ladder": {
-        "name": "Long Call Ladder (Buy 1, Sell 2 Higher Calls)",
-        "ko": "롱 콜 래더 (콜 1 매수 + 상위 콜 2개 매도)",
-        "desc": "A bull call spread plus one more short call at a higher strike. Best in the middle zone; losses are unlimited in a sharp rally."
-      },
-      "short_call_ladder": {
-        "name": "Short Call Ladder (Sell 1, Buy 2 Higher Calls)",
-        "ko": "숏 콜 래더 (콜 1 매도 + 상위 콜 2개 매수)",
-        "desc": "A bear call spread plus one more long call at a higher strike. Gains in a sharp rally."
-      },
-      "long_put_ladder": {
-        "name": "Long Put Ladder (Buy 1, Sell 2 Lower Puts)",
-        "ko": "롱 풋 래더 (풋 1 매수 + 하위 풋 2개 매도)",
-        "desc": "A bear put spread plus one more short put at a lower strike. Best in the middle zone; losses grow in a crash."
-      },
-      "short_put_ladder": {
-        "name": "Short Put Ladder (Sell 1, Buy 2 Lower Puts)",
-        "ko": "숏 풋 래더 (풋 1 매도 + 하위 풋 2개 매수)",
-        "desc": "A bull put spread plus one more long put at a lower strike. Gains in a crash."
-      },
-      "seagull_bull": {
-        "name": "Seagull (Bullish: Short Put + Bull Call Spread)",
-        "ko": "시걸 (강세: 풋 매도 + 강세 콜 스프레드)",
-        "desc": "Sell a lower-strike put to fund a bull call spread. Upside is capped at the top strike; losses grow below the put strike."
-      },
-      "seagull_bear": {
-        "name": "Seagull (Bearish: Short Call + Bear Put Spread)",
-        "ko": "시걸 (약세: 콜 매도 + 약세 풋 스프레드)",
-        "desc": "Sell a higher-strike call to fund a bear put spread. Downside gains are capped at the low strike; losses are unlimited above the call strike."
+      "strategies": {
+        "long_call": {
+          "name": "롱 콜 (콜옵션 매수)",
+          "ko": "Long Call",
+          "desc": "콜옵션을 산다. 최대 손실은 낸 프리미엄으로 한정되고, 기초자산이 오를수록 이익이 커진다. 손익분기점 = 행사가 + 프리미엄."
+        },
+        "short_call": {
+          "name": "숏 콜 (네이키드 콜 매도)",
+          "ko": "Naked Call (Short Call)",
+          "desc": "기초자산을 보유하지 않은 채 콜옵션을 판다. 최대 이익은 받은 프리미엄이고, 기초자산이 급등하면 손실이 제한 없이 커진다. 손익분기점 = 행사가 + 프리미엄."
+        },
+        "long_put": {
+          "name": "롱 풋 (풋옵션 매수)",
+          "ko": "Long Put",
+          "desc": "풋옵션을 산다. 최대 손실은 프리미엄, 최대 이익은 기초자산이 0이 될 때의 (행사가 − 프리미엄). 손익분기점 = 행사가 − 프리미엄."
+        },
+        "short_put": {
+          "name": "숏 풋 (네이키드 풋 매도)",
+          "ko": "Naked Put (Short Put)",
+          "desc": "풋옵션을 판다. 최대 이익은 프리미엄, 최대 손실은 (행사가 − 프리미엄). 손익분기점 = 행사가 − 프리미엄."
+        },
+        "cash_secured_put": {
+          "name": "현금 담보 풋 매도",
+          "ko": "Cash-Secured Put",
+          "desc": "행사될 때 주식을 살 현금(행사가 × 수량 × 승수)을 미리 예치하고 풋을 판다. 만기 손익은 숏 풋과 같고, 차이는 담보 방식뿐이다."
+        },
+        "long_stock": {
+          "name": "기초자산 매수",
+          "ko": "Long Stock",
+          "desc": "주식·선물을 산다. 가격이 1 오르면 1만큼 이익, 1 내리면 1만큼 손실인 선형 손익이다."
+        },
+        "covered_call": {
+          "name": "커버드 콜",
+          "ko": "Covered Call (Buy/Write)",
+          "desc": "주식을 보유한 채 콜을 판다. 상승 이익은 행사가에서 막히는 대신 프리미엄만큼 손실 완충이 생긴다. 만기 손익 모양은 같은 행사가의 숏 풋과 같다(풋-콜 패리티)."
+        },
+        "protective_put": {
+          "name": "프로텍티브 풋",
+          "ko": "Protective Put (Married Put)",
+          "desc": "주식을 보유하고 풋을 산다. 하락 손실이 (진입가 − 행사가 + 프리미엄)으로 한정되는 보험형 전략이다. 만기 손익 모양은 같은 행사가의 롱 콜과 같다."
+        },
+        "collar": {
+          "name": "칼라",
+          "ko": "Collar (Protective Collar)",
+          "desc": "주식 보유 + 외가격 풋 매수 + 외가격 콜 매도. 손익이 두 행사가 사이로 묶인다. 풋 비용과 콜 수입이 같으면 제로코스트 칼라라고 부른다. 모양은 강세 수직 스프레드와 같다."
+        },
+        "covered_put": {
+          "name": "커버드 풋",
+          "ko": "Covered Put",
+          "desc": "주식을 공매도한 채 풋을 판다. 하락 이익은 행사가에서 막히고, 급등하면 손실이 제한 없이 커진다. 만기 손익 모양은 같은 행사가의 숏 콜과 같다."
+        },
+        "bull_call_spread": {
+          "name": "강세 콜 스프레드",
+          "ko": "Bull Call Spread",
+          "desc": "낮은 행사가 콜 매수 + 높은 행사가 콜 매도. 최대 이익 = 행사가 차이 − 순지불액, 최대 손실 = 순지불액."
+        },
+        "bear_call_spread": {
+          "name": "약세 콜 스프레드",
+          "ko": "Bear Call Spread",
+          "desc": "낮은 행사가 콜 매도 + 높은 행사가 콜 매수. 최대 이익 = 순수취액, 최대 손실 = 행사가 차이 − 순수취액."
+        },
+        "bull_put_spread": {
+          "name": "강세 풋 스프레드",
+          "ko": "Bull Put Spread",
+          "desc": "낮은 행사가 풋 매수 + 높은 행사가 풋 매도. 최대 이익 = 순수취액, 최대 손실 = 행사가 차이 − 순수취액."
+        },
+        "bear_put_spread": {
+          "name": "약세 풋 스프레드",
+          "ko": "Bear Put Spread",
+          "desc": "낮은 행사가 풋 매도 + 높은 행사가 풋 매수. 최대 이익 = 행사가 차이 − 순지불액, 최대 손실 = 순지불액."
+        },
+        "long_straddle": {
+          "name": "롱 스트래들",
+          "ko": "Long Straddle",
+          "desc": "같은 행사가의 콜과 풋을 함께 산다. 어느 방향이든 크게 움직이면 이익. 최대 손실 = 두 프리미엄 합, 손익분기점 = 행사가 ± 프리미엄 합."
+        },
+        "short_straddle": {
+          "name": "숏 스트래들",
+          "ko": "Short Straddle",
+          "desc": "같은 행사가의 콜과 풋을 함께 판다. 행사가 부근에서 끝나면 최대 이익(프리미엄 합). 상승 쪽 손실은 무제한, 하락 쪽 손실도 크다."
+        },
+        "long_strangle": {
+          "name": "롱 스트랭글",
+          "ko": "Long Strangle",
+          "desc": "외가격 풋(낮은 행사가)과 외가격 콜(높은 행사가)을 산다. 스트래들보다 싸지만 더 크게 움직여야 이익이 난다."
+        },
+        "short_strangle": {
+          "name": "숏 스트랭글",
+          "ko": "Short Strangle",
+          "desc": "외가격 풋과 외가격 콜을 판다. 두 행사가 사이에서 끝나면 프리미엄 합을 모두 얻는다. 양쪽 꼬리 위험이 크다."
+        },
+        "long_call_butterfly": {
+          "name": "롱 콜 버터플라이",
+          "ko": "Long Call Butterfly",
+          "desc": "같은 간격의 세 행사가로 K1 콜 매수 + K2 콜 2개 매도 + K3 콜 매수. 만기에 가운데 행사가 근처면 이익이 가장 크고, 양쪽 바깥에서는 손익이 평평하다."
+        },
+        "iron_butterfly": {
+          "name": "숏 아이언 버터플라이",
+          "ko": "Short Iron Butterfly",
+          "desc": "숏 스트래들에 같은 간격의 바깥 풋·콜 매수로 날개를 단다(통칭 아이언 버터플라이). 가운데 행사가 근처에서 끝나면 이익이 가장 크고, 손실은 날개에서 막힌다."
+        },
+        "iron_condor": {
+          "name": "아이언 콘도르",
+          "ko": "Iron Condor (Short Iron Condor)",
+          "desc": "강세 풋 스프레드 + 약세 콜 스프레드. 가운데 두 행사가 사이에서 끝나면 최대 이익(순수취액), 최대 손실 = 더 넓은 날개 폭 − 순수취액."
+        },
+        "synthetic_long": {
+          "name": "합성 선물 매수",
+          "ko": "Synthetic Long Stock",
+          "desc": "같은 행사가 콜 매수 + 풋 매도. 풋-콜 패리티에 따라 기초자산을 산 것과 같은 기울기 1의 손익이 된다."
+        },
+        "risk_reversal": {
+          "name": "리스크 리버설 (강세: 풋 매도 + 콜 매수)",
+          "ko": "Risk Reversal (Bullish: Short Put + Long Call)",
+          "desc": "외가격 풋 매도로 외가격 콜 매수 비용을 댄다. 두 행사가 사이는 손익이 평평하고, 위로는 이익 무제한, 아래로는 손실이 커진다."
+        },
+        "call_ratio_spread": {
+          "name": "콜 레이쇼 스프레드 (1:2)",
+          "ko": "Call Ratio Spread 1:2 (OIC: Short Ratio Call Spread)",
+          "desc": "낮은 행사가 콜 1개 매수 + 높은 행사가 콜 2개 매도. 높은 행사가 근처에서 최대 이익, 급등하면 손실이 제한 없이 커진다."
+        },
+        "put_backspread": {
+          "name": "풋 레이쇼 백스프레드 (1:2)",
+          "ko": "Put Ratio Backspread 1:2 (OIC: Long Ratio Put Spread)",
+          "desc": "높은 행사가 풋 1개 매도 + 낮은 행사가 풋 2개 매수. 폭락하면 큰 이익, 낮은 행사가 근처에서 최대 손실, 상승 시 손익은 순수취·순지불액으로 고정된다."
+        },
+        "short_stock": {
+          "name": "기초자산 공매도",
+          "ko": "Short Stock",
+          "desc": "주식·선물을 공매도한다. 가격이 내리면 이익, 오르면 손실이 제한 없이 커진다."
+        },
+        "protective_call": {
+          "name": "프로텍티브 콜 (합성 롱 풋)",
+          "ko": "Protective Call (OIC: Synthetic Long Put)",
+          "desc": "공매도에 콜 매수로 상승 위험을 막는다. 만기 손익 모양은 같은 행사가의 롱 풋과 같다."
+        },
+        "short_collar": {
+          "name": "칼라 (공매도 헤지: 공매도 + 콜 매수 + 풋 매도)",
+          "ko": "Collar on Short Stock (Short Stock + Long Call + Short Put)",
+          "desc": "공매도에 콜 매수(상승 위험 차단)와 풋 매도(비용 보전)를 더한다. 손익이 두 행사가 사이로 묶인다."
+        },
+        "conversion": {
+          "name": "컨버전",
+          "ko": "Conversion",
+          "desc": "주식 매수 + 같은 행사가 풋 매수·콜 매도. 만기 손익이 가격과 무관하게 고정된다. 이 계산기는 자금 비용(금리)을 손익에 넣지 않으므로, 고정 손익이 그대로 이익처럼 보일 수 있다."
+        },
+        "reversal": {
+          "name": "리버설 (리버스 컨버전)",
+          "ko": "Reversal (Reverse Conversion)",
+          "desc": "공매도 + 같은 행사가 콜 매수·풋 매도. 만기 손익이 가격과 무관하게 고정된다. 자금 비용(금리)은 손익에 넣지 않는다."
+        },
+        "ratio_write": {
+          "name": "레이쇼 라이트 (주식 1 + 콜 2 매도)",
+          "ko": "Ratio Write (1 Stock : 2 Short Calls)",
+          "desc": "주식 1단위에 콜 2단위를 판다. 절반은 커버드 콜, 절반은 네이키드 콜이라 급등하면 손실이 제한 없이 커진다."
+        },
+        "covered_ratio": {
+          "name": "커버드 레이쇼 스프레드",
+          "ko": "Covered Ratio Spread",
+          "desc": "주식 매수 + 낮은 행사가 콜 2개 매도 + 높은 행사가 콜 1개 매수(OIC). 매도 콜 행사가까지 오르면 이익이 가장 크고, 그 위로는 이익이 줄다가 평평해진다."
+        },
+        "stock_repair": {
+          "name": "스톡 리페어",
+          "ko": "Stock Repair",
+          "desc": "보유 주식 + 콜 1개 매수 + 더 높은 행사가 콜 2개 매도(OIC). 적은 비용으로 손익분기점을 낮추는 대신 높은 행사가 위의 이익은 포기한다."
+        },
+        "synthetic_short": {
+          "name": "합성 선물 매도",
+          "ko": "Synthetic Short Stock",
+          "desc": "같은 행사가 콜 매도 + 풋 매수. 풋-콜 패리티에 따라 기초자산을 공매도한 것과 같은 기울기 −1의 손익이 된다."
+        },
+        "risk_reversal_bear": {
+          "name": "리스크 리버설 (약세: 풋 매수 + 콜 매도)",
+          "ko": "Risk Reversal (Bearish: Long Put + Short Call)",
+          "desc": "외가격 콜 매도로 외가격 풋 매수 비용을 댄다. 두 행사가 사이는 손익이 평평하고, 아래로는 이익, 위로는 손실이 제한 없이 커진다."
+        },
+        "strap": {
+          "name": "롱 스트랩 (콜 2 + 풋 1)",
+          "ko": "Long Strap",
+          "desc": "같은 행사가 콜 2개와 풋 1개를 산다(Hull). 상승 쪽에 더 크게 베팅한 스트래들이다."
+        },
+        "short_strap": {
+          "name": "숏 스트랩 (콜 2 + 풋 1 매도)",
+          "ko": "Short Strap",
+          "desc": "같은 행사가 콜 2개와 풋 1개를 판다. 행사가 근처에서 끝나면 이익, 급등하면 손실이 제한 없이 커진다."
+        },
+        "strip": {
+          "name": "롱 스트립 (콜 1 + 풋 2)",
+          "ko": "Long Strip",
+          "desc": "같은 행사가 콜 1개와 풋 2개를 산다(Hull). 하락 쪽에 더 크게 베팅한 스트래들이다."
+        },
+        "short_strip": {
+          "name": "숏 스트립 (콜 1 + 풋 2 매도)",
+          "ko": "Short Strip",
+          "desc": "같은 행사가 콜 1개와 풋 2개를 판다. 행사가 근처에서 끝나면 이익, 하락·급등 모두 손실이 커진다."
+        },
+        "long_guts": {
+          "name": "롱 거츠",
+          "ko": "Long Guts",
+          "desc": "내가격 콜(낮은 행사가)과 내가격 풋(높은 행사가)을 산다(OIC 스트랭글 변형). 손익 모양은 스트랭글과 같고 프리미엄이 더 크다."
+        },
+        "short_guts": {
+          "name": "숏 거츠",
+          "ko": "Short Guts",
+          "desc": "내가격 콜과 내가격 풋을 판다. 두 행사가 사이에서 끝나면 이익이 가장 크고, 양쪽으로 크게 움직이면 손실이 커진다."
+        },
+        "short_call_butterfly": {
+          "name": "숏 콜 버터플라이",
+          "ko": "Short Call Butterfly",
+          "desc": "같은 간격의 세 행사가로 K1 콜 매도 + K2 콜 2개 매수 + K3 콜 매도. 가운데 행사가 근처에서 손실이 가장 크고, 양쪽 바깥에서는 손익이 평평하다."
+        },
+        "long_put_butterfly": {
+          "name": "롱 풋 버터플라이",
+          "ko": "Long Put Butterfly",
+          "desc": "같은 간격의 세 행사가로 K1 풋 매수 + K2 풋 2개 매도 + K3 풋 매수. 가운데 행사가 근처에서 이익이 가장 크다."
+        },
+        "short_put_butterfly": {
+          "name": "숏 풋 버터플라이",
+          "ko": "Short Put Butterfly",
+          "desc": "같은 간격의 세 행사가로 K1 풋 매도 + K2 풋 2개 매수 + K3 풋 매도. 가운데 행사가 근처에서 손실이 가장 크다."
+        },
+        "long_iron_butterfly": {
+          "name": "롱 아이언 버터플라이",
+          "ko": "Long Iron Butterfly",
+          "desc": "롱 스트래들에 같은 간격의 바깥 풋·콜 매도를 더한다(OIC). 크게 움직이면 이익이 나지만 날개에서 막힌다."
+        },
+        "long_iron_condor": {
+          "name": "롱 아이언 콘도르",
+          "ko": "Long Iron Condor",
+          "desc": "약세 풋 스프레드 + 강세 콜 스프레드. 바깥 행사가 밖으로 크게 움직이면 이익이 가장 크고, 가운데 구간에서는 순지불액만큼 잃는다."
+        },
+        "long_call_condor": {
+          "name": "롱 콜 콘도르",
+          "ko": "Long Call Condor",
+          "desc": "네 행사가 콜을 매수·매도·매도·매수한다(OIC). 가운데 두 행사가 사이에서 끝나면 이익이 가장 크다."
+        },
+        "short_call_condor": {
+          "name": "숏 콜 콘도르",
+          "ko": "Short Call Condor",
+          "desc": "네 행사가 콜을 매도·매수·매수·매도한다. 바깥 행사가 밖으로 크게 움직이면 이익이 가장 크다."
+        },
+        "long_put_condor": {
+          "name": "롱 풋 콘도르",
+          "ko": "Long Put Condor",
+          "desc": "네 행사가 풋을 매수·매도·매도·매수한다. 가운데 두 행사가 사이에서 끝나면 이익이 가장 크다."
+        },
+        "short_put_condor": {
+          "name": "숏 풋 콘도르",
+          "ko": "Short Put Condor",
+          "desc": "네 행사가 풋을 매도·매수·매수·매도한다. 바깥 행사가 밖으로 크게 움직이면 이익이 가장 크다."
+        },
+        "long_box": {
+          "name": "롱 박스",
+          "ko": "Long Box",
+          "desc": "강세 콜 스프레드 + 약세 풋 스프레드(같은 두 행사가). 만기 가치가 행사가 차이로 고정된다(Hull). 자금 비용(금리)은 손익에 넣지 않는다."
+        },
+        "short_box": {
+          "name": "숏 박스",
+          "ko": "Short Box",
+          "desc": "약세 콜 스프레드 + 강세 풋 스프레드(같은 두 행사가). 만기에 행사가 차이만큼 지급하는 대신 지금 받는다. 자금 비용(금리)은 손익에 넣지 않는다."
+        },
+        "long_call_ladder": {
+          "name": "롱 콜 래더 (콜 1 매수 + 상위 콜 2개 매도)",
+          "ko": "Long Call Ladder (Buy 1, Sell 2 Higher Calls)",
+          "desc": "강세 콜 스프레드에 더 높은 행사가 콜을 하나 더 판다. 가운데 구간에서 이익이 가장 크고, 급등하면 손실이 제한 없이 커진다."
+        },
+        "short_call_ladder": {
+          "name": "숏 콜 래더 (콜 1 매도 + 상위 콜 2개 매수)",
+          "ko": "Short Call Ladder (Sell 1, Buy 2 Higher Calls)",
+          "desc": "약세 콜 스프레드에 더 높은 행사가 콜을 하나 더 산다. 급등하면 이익이 커진다."
+        },
+        "long_put_ladder": {
+          "name": "롱 풋 래더 (풋 1 매수 + 하위 풋 2개 매도)",
+          "ko": "Long Put Ladder (Buy 1, Sell 2 Lower Puts)",
+          "desc": "약세 풋 스프레드에 더 낮은 행사가 풋을 하나 더 판다. 가운데 구간에서 이익이 가장 크고, 폭락하면 손실이 커진다."
+        },
+        "short_put_ladder": {
+          "name": "숏 풋 래더 (풋 1 매도 + 하위 풋 2개 매수)",
+          "ko": "Short Put Ladder (Sell 1, Buy 2 Lower Puts)",
+          "desc": "강세 풋 스프레드에 더 낮은 행사가 풋을 하나 더 산다. 폭락하면 이익이 커진다."
+        },
+        "seagull_bull": {
+          "name": "시걸 (강세: 풋 매도 + 강세 콜 스프레드)",
+          "ko": "Seagull (Bullish: Short Put + Bull Call Spread)",
+          "desc": "낮은 행사가 풋을 팔아 강세 콜 스프레드 비용을 댄다. 위쪽 이익은 높은 행사가에서 막히고, 아래로는 손실이 커진다."
+        },
+        "seagull_bear": {
+          "name": "시걸 (약세: 콜 매도 + 약세 풋 스프레드)",
+          "ko": "Seagull (Bearish: Short Call + Bear Put Spread)",
+          "desc": "높은 행사가 콜을 팔아 약세 풋 스프레드 비용을 댄다. 아래쪽 이익은 낮은 행사가에서 막히고, 위로는 손실이 제한 없이 커진다."
+        }
       }
     }
-  } };
+  };
+  var LANG = 'en';
   var T = I18N.en;
+  var LANG_KEY = 'bbb.optionsPayoff.lang';
+  function applyCatalogText() {
+    PRESETS.forEach(applyText);
+    EXTRA.forEach(applyText);
+  }
+  function setLang(lang) {
+    if (lang !== 'ko' && lang !== 'en') lang = 'en';
+    LANG = lang;
+    T = I18N[lang] || I18N.en;
+    if (typeof PRESETS !== 'undefined' && PRESETS.length) applyCatalogText();
+    return LANG;
+  }
+  function getLang() { return LANG; }
+  /** Show/hide static page copy marked with data-op-lang (EN visible by default without JS). */
+  function applyPageLang(lang) {
+    if (typeof document === 'undefined') return;
+    var nodes = document.querySelectorAll('[data-op-lang]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i], on = el.getAttribute('data-op-lang') === lang;
+      if (on) el.removeAttribute('hidden'); else el.setAttribute('hidden', '');
+    }
+  }
+  function resolveInitialLang() {
+    try {
+      var q = typeof location !== 'undefined' ? /(?:^|[?&])lang=(ko|en)(?:&|$)/i.exec(location.search || '') : null;
+      if (q) return q[1].toLowerCase();
+    } catch (e) { /* ignore */ }
+    try {
+      var saved = typeof localStorage !== 'undefined' ? localStorage.getItem(LANG_KEY) : null;
+      if (saved === 'ko' || saved === 'en') return saved;
+    } catch (e) { /* ignore */ }
+    return 'en';
+  }
+
   /** Fill {0}, {1}, … placeholders. */
   function tpl(str, args) { return String(str).replace(/\{(\d+)\}/g, function (_, i) { return args && args[i] !== undefined ? String(args[i]) : ''; }); }
   function applyText(p) { var t = T.strategies[p.id]; p.name = t.name; p.en = t.name; p.ko = t.ko; p.desc = t.desc; }
@@ -718,6 +1219,7 @@
     { id: 'seagull_bear', legs: [['put', -1, 1, 0], ['put', 1, 1, 1], ['call', -1, 1, 2]] }
   ];
   EXTRA.forEach(applyText);
+  setLang(resolveInitialLang());
 
   function sigOfDef(p) {
     var legs = [];
@@ -738,10 +1240,12 @@
     var near = call ? lo : hi, far = call ? hi : lo; // near = closer to the money for a ratio spread (lower call / higher put)
     var n = Math.abs(near.q) / g, m = Math.abs(far.q) / g;
     if (m <= n) return null;
-    var N = T.naming, E = N.typeEn[type], K = N.typeKo[type];
-    if (near.q > 0) return { id: type + '_ratio_spread', name: tpl(N.ratioSpreadName, [E, n, m]), ko: tpl(N.ratioSpreadKo, [K, n, m]),
+    var N = T.naming;
+    var primary = LANG === 'ko' ? N.typeKo[type] : N.typeEn[type];
+    var secondary = LANG === 'ko' ? N.typeEn[type] : N.typeKo[type];
+    if (near.q > 0) return { id: type + '_ratio_spread', name: tpl(N.ratioSpreadName, [primary, n, m]), ko: tpl(N.ratioSpreadKo, [secondary, n, m]),
       desc: tpl(N.ratioDesc[call ? 'callSpread' : 'putSpread'], [n, m]) };
-    return { id: type + '_backspread', name: tpl(N.ratioBackName, [E, n, m]), ko: tpl(N.ratioBackKo, [K, n, m]),
+    return { id: type + '_backspread', name: tpl(N.ratioBackName, [primary, n, m]), ko: tpl(N.ratioBackKo, [secondary, n, m]),
       desc: tpl(N.ratioDesc[call ? 'callBack' : 'putBack'], [n, m]) };
   }
 
@@ -895,11 +1399,11 @@
     if (!isFinite(n)) return '–';
     var d = digits === undefined ? 2 : digits;
     var v = Math.abs(n) < 1e-9 ? 0 : n;
-    return v.toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: 0 });
+    return v.toLocaleString(LANG === 'ko' ? 'ko-KR' : 'en-US', { maximumFractionDigits: d, minimumFractionDigits: 0 });
   }
   function fmtSigned(n) { return (n > 0 && isFinite(n) ? '+' : '') + fmt(n); }
 
-  var Core = { LIMITS: LIMITS, PRESETS: PRESETS, bsPrice: bsPrice, normCdf: normCdf, legPnl: legPnl, pnl: pnl,
+  var Core = { I18N: I18N, setLang: setLang, getLang: getLang, applyPageLang: applyPageLang, LIMITS: LIMITS, PRESETS: PRESETS, bsPrice: bsPrice, normCdf: normCdf, legPnl: legPnl, pnl: pnl,
     metrics: metrics, buildPresetLegs: buildPresetLegs, reprice: reprice, presetStrikes: presetStrikes, strikeTick: strikeTick,
     signature: signature, identify: identify, classify: classify, describe: describe, priceWarnings: priceWarnings, strikeTol: strikeTol, scaleOf: scaleOf, sanitizeState: sanitizeState, defaultState: defaultState,
     encodeState: encodeState, decodeState: decodeState, fmt: fmt };
@@ -936,6 +1440,9 @@
 
   App.prototype.init = function () {
     var self = this, st = null, fromUrl = false;
+    setLang(resolveInitialLang());
+    this.root.setAttribute('lang', LANG === 'ko' ? 'ko' : 'en');
+    applyPageLang(LANG);
     var m = /(?:^|[#&])s=([A-Za-z0-9_-]+)/.exec(location.hash || '');
     if (m) { st = decodeState(m[1]); fromUrl = !!st; }
     if (!st) {
@@ -1046,6 +1553,7 @@
       h('p', { class: 'op-note', text: T.ui.storageNote })
     ]);
 
+    r.appendChild(this.buildLangToggle());
     r.appendChild(h('div', { class: 'op-layout' }, [
       h('div', { class: 'op-main' }, [chartBox, summary]),
       h('div', { class: 'op-side' }, [editor, market, save])
@@ -1057,6 +1565,43 @@
   App.prototype.status = function (msg) {
     var el = this.statusEl; el.textContent = msg;
     clearTimeout(this._st); this._st = setTimeout(function () { el.textContent = ''; }, 4000);
+  };
+
+  App.prototype.setLanguage = function (lang) {
+    setLang(lang);
+    try { localStorage.setItem(LANG_KEY, LANG); } catch (e) { /* ignore */ }
+    this.root.setAttribute('lang', LANG === 'ko' ? 'ko' : 'en');
+    applyPageLang(LANG);
+    this.build();
+    this.renderAll();
+  };
+
+  App.prototype.buildLangToggle = function () {
+    var self = this, isKo = LANG === 'ko';
+    var knob = h('span', { class: 'op-lang-knob', 'aria-hidden': 'true' });
+    var btn = h('button', {
+      type: 'button', class: 'op-lang-toggle' + (isKo ? ' is-ko' : ' is-en'),
+      role: 'switch', 'aria-checked': isKo ? 'true' : 'false',
+      'aria-label': T.ui.langToggleAria, title: T.ui.langToggleAria
+    }, [
+      knob,
+      h('span', { class: 'op-lang-opt op-lang-ko', lang: 'ko', text: T.ui.langKo }),
+      h('span', { class: 'op-lang-opt op-lang-en', lang: 'en', text: T.ui.langEn })
+    ]);
+    var flip = function () { self.setLanguage(LANG === 'ko' ? 'en' : 'ko'); };
+    var go = function (lang) { if (lang !== LANG) self.setLanguage(lang); };
+    btn.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t && t.classList && t.classList.contains('op-lang-ko')) { go('ko'); return; }
+      if (t && t.classList && t.classList.contains('op-lang-en')) { go('en'); return; }
+      flip();
+    });
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'Home') { e.preventDefault(); go('ko'); }
+      else if (e.key === 'ArrowRight' || e.key === 'End') { e.preventDefault(); go('en'); }
+    });
+    return h('div', { class: 'op-lang-bar' }, [btn]);
   };
 
   App.prototype.changed = function () {
@@ -1181,7 +1726,11 @@
     var n = this.nameOf(sl), p = identify(sl.legs, sl.preset);
     this.presetSel.value = p ? p.id : '';
     clear(this.info);
-    this.info.appendChild(h('div', { class: 'op-info-name' }, [h('strong', { text: n.name }), n.ko ? h('span', { class: 'op-info-ko', lang: 'ko', text: T.ui.koLabel + n.ko }) : null]));
+    this.info.appendChild(h('div', { class: 'op-info-name' }, [
+      h('strong', { text: n.name }),
+      n.ko ? h('span', { class: 'op-info-ko', lang: LANG === 'ko' ? 'en' : 'ko',
+        text: LANG === 'ko' ? ('(' + n.ko + ')') : (T.ui.koLabel + n.ko) }) : null
+    ]));
     this.info.appendChild(h('p', { text: n.desc }));
     if (n.stats) this.info.appendChild(h('p', { class: 'op-info-stats', text: n.stats }));
     var self = this;
