@@ -1,0 +1,26 @@
+---
+layout: null
+permalink: /rss.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ '/' | absolute_url }}</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>ko-KR</language>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <atom:link href="{{ '/rss.xml' | absolute_url }}" rel="self" type="application/rss+xml"/>
+{%- for post in site.posts limit: 20 %}
+    {%- assign post_url = post.url | absolute_url %}
+    {%- assign post_desc = post.description | default: post.excerpt %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post_url }}</link>
+      <guid isPermaLink="true">{{ post_url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <description><![CDATA[{{ post_desc }}]]></description>
+    </item>
+{%- endfor %}
+  </channel>
+</rss>
