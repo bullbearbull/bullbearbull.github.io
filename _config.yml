@@ -212,6 +212,10 @@ compress_html:
   ignore:
     envs: [development]
 
+include:
+  - .htaccess
+  - tools/options-payoff.md
+
 exclude:
   - "*.gem"
   - "*.gemspec"
