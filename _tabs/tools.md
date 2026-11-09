@@ -10,3 +10,4 @@ title: Tools
 | 도구 | 설명 |
 | --- | --- |
 | [Options Payoff Simulator]({{ '/tools/options-payoff/' | relative_url }}) | Compare expiration P&L, break-even points, and max profit and loss for call, put, and stock combinations (English UI) |
+| [Bond Cash-Flow & Duration Simulator]({{ '/tools/bond-simulator/' | relative_url }}) | Drag cash flows to see price, Macaulay and Modified Duration, DV01, and Convexity, with the convexity approximation (English/Korean UI) |

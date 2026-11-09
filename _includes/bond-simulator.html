@@ -1,0 +1,71 @@
+<!-- Bond cash-flow simulator: the tool UI is built by assets/js/bond-simulator.js (I18N.en / I18N.ko). No inline script/style.
+     Static page copy is duplicated with data-bd-lang; English is visible by default (also without JS). Page title/meta stay English. -->
+<link rel="stylesheet" href="{{ '/assets/css/bond-simulator.css' | relative_url }}">
+
+<div class="bd-page-copy" data-bd-lang="en">
+  <p>Shape a bond’s <strong>cash flows by dragging them on the chart</strong> and see how its price, duration, and convexity respond. It starts with a single zero-coupon bond that pays 100 at maturity.</p>
+</div>
+<div class="bd-page-copy" data-bd-lang="ko" hidden lang="ko">
+  <p>채권의 <strong>현금흐름을 그래프에서 직접 끌어</strong> 바꾸고, 가격·듀레이션·볼록성이 어떻게 달라지는지 바로 확인합니다. 처음에는 만기에 액면 100을 한 번 받는 무이표채(할인채) 하나로 시작합니다.</p>
+</div>
+
+<div id="bond-simulator-app" class="bd-app" lang="en">
+  <noscript>This tool needs JavaScript enabled in your browser.</noscript>
+</div>
+
+<div class="bd-page-copy" data-bd-lang="en">
+  <h3 id="bond-how-to-use">How to use</h3>
+  <ol>
+    <li><strong>Drag points.</strong> Move a point sideways to change its payment time (it snaps to whole months) and up or down to change its amount. Push the last point against the right edge to extend maturity, or any point against the top edge to extend the amount axis. When you let go, the vertical axis rescales to 120% of the largest cash flow.</li>
+    <li><strong>Add and remove.</strong> Click <strong>+</strong> on the time axis to insert a payment between two payments (or between 0 and the first one); double-clicking an empty spot also works. Select a point and use <strong>×</strong>, “Delete this payment”, or the Delete key to remove it.</li>
+    <li><strong>Exact input.</strong> Type times and amounts in the “Edit Cash Flows” table, or use “Fill as a level-coupon bond” to generate regular coupons in one step.</li>
+    <li><strong>Yield.</strong> Only the YTM and the compounding frequency are needed. With the keyboard, focus a point and use ←/→ (one month) and ↑/↓ (amount; hold Shift for 10×).</li>
+  </ol>
+  <h3 id="bond-definitions">Definitions</h3>
+  <p>For an annual yield y compounded m times a year and cash flows CFᵢ paid at times tᵢ (in years):</p>
+  <div class="bd-def-table"><table>
+    <thead><tr><th>Measure</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td>Discount factor</td><td>DFᵢ = (1 + y/m)^(−m·tᵢ); with continuous compounding, e^(−y·tᵢ)</td></tr>
+      <tr><td>Price (PV)</td><td>P = Σ CFᵢ · DFᵢ</td></tr>
+      <tr><td>Macaulay Duration</td><td>D = Σ tᵢ · CFᵢ · DFᵢ / P (years; the PV-weighted average time)</td></tr>
+      <tr><td>Modified Duration</td><td>D* = D / (1 + y/m) = −(1/P)·dP/dy; with continuous compounding, D* = D</td></tr>
+      <tr><td>Convexity</td><td>C = (1/P)·d²P/dy² = Σ CFᵢ·DFᵢ·tᵢ(tᵢ + 1/m) / ((1 + y/m)²·P) (years²; continuous: Σ tᵢ²·CFᵢ·DFᵢ / P)</td></tr>
+      <tr><td>DV01</td><td>D* × P × 0.0001: the price change for a 1 bp (0.01%) yield move, in the same unit as the cash flows</td></tr>
+      <tr><td>Approximation</td><td>ΔP/P ≈ −D*·Δy + ½·C·Δy²</td></tr>
+    </tbody>
+  </table></div>
+  <p>These follow Fabozzi (<em>Bond Markets, Analysis, and Strategies</em>), Hull (<em>Options, Futures, and Other Derivatives</em>, ch. 4), and the CFA curriculum. Convexity is annualized (the per-period value divided by m²). Every cash flow is discounted at a single yield; accrued interest, day-count conventions, credit risk, taxes, and embedded options (calls, puts) are not modeled.</p>
+  <blockquote class="prompt-warning">
+    <p>For education and reference only — not investment advice. Results can differ from market prices. Your last state is saved only in your browser’s localStorage and is never sent to a server.</p>
+  </blockquote>
+</div>
+<div class="bd-page-copy" data-bd-lang="ko" hidden lang="ko">
+  <h3 id="bond-how-to-use-ko">사용 방법</h3>
+  <ol>
+    <li><strong>점 끌기</strong>: 점을 가로로 끌면 지급 시점이 1개월 단위로, 세로로 끌면 금액이 바뀝니다. 마지막 점을 오른쪽 끝까지 밀면 만기 축이, 아무 점이나 위쪽 끝까지 밀면 금액 축이 늘어납니다. 손을 떼면 세로축은 가장 큰 현금흐름의 120%로 다시 맞춰집니다.</li>
+    <li><strong>추가·삭제</strong>: 시간축 위의 <strong>+</strong>를 누르면 두 지급 사이(또는 0과 첫 지급 사이)에 지급이 생깁니다. 빈 곳을 두 번 클릭해도 됩니다. 점을 고른 뒤 <strong>×</strong>, ‘이 지급 삭제’, Delete 키 중 하나로 지웁니다.</li>
+    <li><strong>정밀 입력</strong>: ‘현금흐름 직접 입력’ 표에서 시점과 금액을 숫자로 넣거나, ‘이표채로 한 번에 채우기’로 같은 간격의 이자를 한 번에 만듭니다.</li>
+    <li><strong>수익률</strong>: 만기수익률(YTM)과 복리 주기만 정하면 됩니다. 키보드로는 점에 초점을 둔 뒤 ←/→(1개월), ↑/↓(금액, Shift를 누르면 10배)로 움직입니다.</li>
+  </ol>
+  <h3 id="bond-definitions-ko">계산 기준</h3>
+  <p>연 수익률 y, 연간 복리 횟수 m, 시점 tᵢ(년)에 지급되는 현금흐름 CFᵢ에 대해 다음과 같이 계산합니다.</p>
+  <div class="bd-def-table"><table>
+    <thead><tr><th>지표</th><th>정의</th></tr></thead>
+    <tbody>
+      <tr><td>할인계수</td><td>DFᵢ = (1 + y/m)^(−m·tᵢ), 연속복리는 e^(−y·tᵢ)</td></tr>
+      <tr><td>가격 (현재가치)</td><td>P = Σ CFᵢ · DFᵢ</td></tr>
+      <tr><td>매콜리 듀레이션</td><td>D = Σ tᵢ · CFᵢ · DFᵢ / P (년, 현재가치로 가중한 평균 회수기간)</td></tr>
+      <tr><td>수정듀레이션</td><td>D* = D / (1 + y/m) = −(1/P)·dP/dy, 연속복리는 D* = D</td></tr>
+      <tr><td>볼록성</td><td>C = (1/P)·d²P/dy² = Σ CFᵢ·DFᵢ·tᵢ(tᵢ + 1/m) / ((1 + y/m)²·P) (년², 연속복리는 Σ tᵢ²·CFᵢ·DFᵢ / P)</td></tr>
+      <tr><td>DV01</td><td>D* × P × 0.0001: 수익률이 1bp(0.01%p) 변할 때의 가격 변화, 현금흐름과 같은 단위</td></tr>
+      <tr><td>근사식</td><td>ΔP/P ≈ −D*·Δy + ½·C·Δy²</td></tr>
+    </tbody>
+  </table></div>
+  <p>정의는 Fabozzi(<em>Bond Markets, Analysis, and Strategies</em>), Hull(<em>Options, Futures, and Other Derivatives</em> 4장), CFA 커리큘럼을 따릅니다. 볼록성은 연 단위로 환산한 값(기간 단위 값 ÷ m²)입니다. 모든 현금흐름을 하나의 수익률로 할인하며 경과이자, 일수 계산 관행, 신용위험, 세금, 수의상환·조기상환 같은 옵션 조항은 반영하지 않습니다.</p>
+  <blockquote class="prompt-warning">
+    <p>교육·참고용입니다. 실제 시장 가격과 다를 수 있으며 투자 권유가 아닙니다. 마지막 상태는 이 브라우저의 localStorage에만 저장되며 서버로 전송되지 않습니다.</p>
+  </blockquote>
+</div>
+
+<script src="{{ '/assets/js/bond-simulator.js' | relative_url }}" defer></script>
