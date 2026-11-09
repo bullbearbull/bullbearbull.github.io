@@ -4,6 +4,8 @@ icon: fas fa-info-circle
 order: 5
 ---
 
-MINU ([@bullbearbull](https://github.com/bullbearbull))
+**CRESC.** — Markets, Models & Rules
 
-금융, 퀀트, 데이터로 시장을 읽는 글을 올립니다.
+AI, 금융, 퀀트, 파생상품, 수학, 법·규제를 숫자와 근거로 풀어 씁니다.
+
+[GitHub @bullbearbull](https://github.com/bullbearbull)

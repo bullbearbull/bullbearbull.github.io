@@ -1,0 +1,22 @@
+# Mobile home hero (rendered by _includes/home-hero.html, < 768px only).
+# Each topic links to the first of its `categories` that already has posts.
+# Topics with no posts yet are shown as muted, non-clickable chips
+# (set show_empty_topics: false to hide them instead).
+show_empty_topics: false
+
+topics:
+  - name: Finance & Markets
+    categories: [finance, derivatives, markets]
+  - name: Quant & Data
+    categories: [quant, data]
+  - name: AI Research
+    categories: [ai-research]
+  - name: AI Services
+    categories: [ai-services]
+  - name: Math
+    categories: [math]
+  - name: Law & Regulation
+    categories: [law, regulation]
+
+# Tools link appears only when a tab or page with this URL exists (hidden otherwise).
+tools_url: /tools/
