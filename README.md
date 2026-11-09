@@ -1,8 +1,8 @@
-# bullbearbull
+# CRESC.
 
 [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) 테마를 쓰는 Jekyll 블로그입니다. 배포 주소는 [https://bullbearbull.github.io](https://bullbearbull.github.io) 입니다.
 
-금융, 퀀트, 데이터로 시장을 읽는 글을 올립니다.
+Markets, Models & Rules — AI, 금융, 퀀트, 파생상품, 수학, 법·규제를 숫자와 근거로 풀어 씁니다.
 
 ## 글 추가하기
 

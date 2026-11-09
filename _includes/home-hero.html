@@ -1,0 +1,47 @@
+<!-- Mobile-only home hero: logotype, tagline, topic chips, optional tools link. No external requests. -->
+{% assign _home = site.data.home %}
+<section id="home-hero" class="d-md-none" aria-label="{{ site.title }}">
+  {%- assign _last = site.title | slice: -1 -%}
+  {%- assign _stem_len = site.title | size | minus: 1 -%}
+  <p class="hero-logo mb-0">
+    {%- if _last == '.' -%}
+      {{ site.title | slice: 0, _stem_len }}<span class="hero-dot">.</span>
+    {%- else -%}
+      {{ site.title }}
+    {%- endif -%}
+  </p>
+  <p class="hero-tagline mb-0">{{ site.tagline }}</p>
+
+  {% if _home.topics %}
+    <nav class="hero-chips" aria-label="Topics">
+      {% for topic in _home.topics %}
+        {% assign _url = nil %}
+        {% for c in topic.categories %}
+          {% if site.categories[c] %}
+            {% capture _url %}/categories/{{ c | slugify | url_encode }}/{% endcapture %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if _url %}
+          <a class="hero-chip" href="{{ _url | relative_url }}">{{ topic.name }}</a>
+        {% elsif _home.show_empty_topics %}
+          <span class="hero-chip is-empty" aria-disabled="true">{{ topic.name }}</span>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  {% endif %}
+
+  {% if _home.tools_url %}
+    {% assign _tools = site.tabs | where: 'url', _home.tools_url | first %}
+    {% unless _tools %}{% assign _tools = site.pages | where: 'url', _home.tools_url | first %}{% endunless %}
+    {% if _tools %}
+      <a class="hero-tools" href="{{ _home.tools_url | relative_url }}">
+        <i class="fas fa-toolbox fa-fw"></i>
+        <span>{{ _tools.title | default: 'Tools' }}</span>
+        <i class="fas fa-angle-right fa-fw ms-auto"></i>
+      </a>
+    {% endif %}
+  {% endif %}
+
+  <p class="hero-section-label mb-0">Latest</p>
+</section>
