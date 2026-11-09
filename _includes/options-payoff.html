@@ -1,6 +1,49 @@
-<!-- Options payoff simulator: markup is built by assets/js/options-payoff.js (no inline script/style). -->
+<!-- Options payoff simulator: markup is built by assets/js/options-payoff.js (no inline script/style).
+     Static copy is duplicated with data-op-lang; EN is visible by default (no JS). Page title/meta stay English. -->
 <link rel="stylesheet" href="{{ '/assets/css/options-payoff.css' | relative_url }}">
+
+<div class="op-page-copy" data-op-lang="en">
+  <p>Overlay up to three option strategies, such as covered calls, spreads, straddles, and iron condors, and compare their <strong>payoff at expiration</strong>. Click “+ Add strategy”, then add legs or load a standard template. The chart, break-even points, and max profit and loss update instantly, and the tool names the strategy when its structure matches a standard one.</p>
+</div>
+<div class="op-page-copy" data-op-lang="ko" hidden lang="ko">
+  <p>커버드 콜, 스프레드, 스트래들, 아이언 콘도르 같은 옵션 전략을 최대 3개까지 겹쳐 두고 <strong>만기 손익</strong>을 비교합니다. ‘+ 전략 추가’를 누른 뒤 레그를 넣거나 표준 템플릿을 불러오세요. 그래프·손익분기점·최대 이익·손실이 바로 갱신되고, 표준 구조와 같으면 전략 이름도 자동으로 붙습니다.</p>
+</div>
+
 <div id="options-payoff-app" class="op-app" lang="en">
   <noscript>This tool needs JavaScript enabled in your browser.</noscript>
 </div>
+
+<div class="op-page-copy" data-op-lang="en">
+  <h3 id="how-to-use">How to use</h3>
+  <ol>
+    <li>In <strong>Market inputs</strong>, enter the spot price, implied volatility, days to expiry, risk-free rate, and contract multiplier. With auto-pricing on, premiums are filled with Black-Scholes theoretical values (no dividends).</li>
+    <li>In <strong>Strategy builder</strong>, click “+ Add strategy” and add call, put, or underlying legs. You can also load a standard template from the small dropdown inside each strategy.</li>
+    <li>Hover over or tap the chart to compare P&amp;L at any expiration price.</li>
+  </ol>
+  <h3 id="how-it-is-calculated">How it is calculated</h3>
+  <ul>
+    <li>P&amp;L = intrinsic value at expiration − premium for long options, premium − intrinsic value for short options, and (expiration price − entry price) for the underlying. Every value is multiplied by quantity and contract multiplier.</li>
+    <li>Max profit, max loss, and break-even points are computed exactly at the kinks (strikes and entry prices). All legs share one expiration. Commissions, taxes, margin, dividends, early exercise, and time value before expiration are not modeled.</li>
+  </ul>
+  <blockquote class="prompt-warning">
+    <p>For education and reference only. Results can differ from real market prices, and nothing here is investment advice. Your settings are stored only in your browser’s localStorage and are never sent to a server.</p>
+  </blockquote>
+</div>
+<div class="op-page-copy" data-op-lang="ko" hidden lang="ko">
+  <h3 id="how-to-use-ko">사용 방법</h3>
+  <ol>
+    <li><strong>시장 입력</strong>에서 현재가, 내재변동성, 잔존일수, 무위험이자율, 계약 승수를 입력합니다. 자동 계산을 켜 두면 프리미엄은 블랙-숄즈 이론가(배당 없음)로 채워집니다.</li>
+    <li><strong>전략 구성</strong>에서 ‘+ 전략 추가’를 누르고 콜·풋·기초자산 레그를 넣습니다. 각 전략 안의 작은 드롭다운으로 표준 템플릿을 불러올 수도 있습니다.</li>
+    <li>그래프를 가리키거나 탭하면 그 만기 가격에서의 손익을 비교합니다.</li>
+  </ol>
+  <h3 id="how-it-is-calculated-ko">계산 방식</h3>
+  <ul>
+    <li>손익 = 만기 내재가치 − 프리미엄(매수), 프리미엄 − 내재가치(매도), (만기 가격 − 진입가)(기초자산). 모든 값에 수량과 계약 승수를 곱합니다.</li>
+    <li>최대 이익·손실·손익분기점은 꺾이는 점(행사가·진입가)에서 정확히 계산합니다. 모든 레그는 같은 만기를 공유합니다. 수수료, 세금, 증거금, 배당, 조기행사, 만기 전 시간가치는 반영하지 않습니다.</li>
+  </ul>
+  <blockquote class="prompt-warning">
+    <p>교육·참고용입니다. 실제 시장 가격과 다를 수 있으며 투자 권유가 아닙니다. 설정은 이 브라우저의 localStorage에만 저장되며 서버로 전송되지 않습니다.</p>
+  </blockquote>
+</div>
+
 <script src="{{ '/assets/js/options-payoff.js' | relative_url }}" defer></script>
