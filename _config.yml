@@ -152,6 +152,9 @@ pwa:
 
 paginate: 10
 
+# Publish posts dated in the future (this site's first post is 2026-11-11).
+future: true
+
 # The base URL of your site
 baseurl: ""
 
