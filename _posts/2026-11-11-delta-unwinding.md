@@ -6,8 +6,8 @@ categories: [finance, derivatives]
 tags: [델타 언와인딩, 델타헤지, 옵션쇼크, 도이치증권, kospi200, 옵션만기, 지수차익거래, 베이시스, 동시호가, 랜덤엔드, els, volmageddon]
 description: "2010년 11월 11일 옵션 만기일 동시호가 10분 동안 2조 4,424억원 매도가 쏟아져 KOSPI200이 2.79% 급락했습니다. 델타 언와인딩과 청산 수급이 만기 종가를 어떻게 만드는지, 옵션쇼크로 풀어 봅니다."
 image:
-  path: /assets/images/2026-11-11-delta-unwinding/kospi200-2010q4.png
-  alt: "KOSPI200 2010년 10~12월 일별 종가와 거래대금. 11월 11일 급락과 거래대금 급증이 표시돼 있다"
+  path: /assets/images/2026-11-11-delta-unwinding/thumb.jpg
+  alt: "왼쪽에서 오른쪽으로 도미노처럼 쓰러지는 빼빼로 막대들 (AI 생성 이미지)"
 math: true
 toc: true
 ---
