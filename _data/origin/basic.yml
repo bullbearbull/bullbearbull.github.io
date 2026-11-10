@@ -1,0 +1,11 @@
+# Overrides for Chirpy's self-hosted asset paths (merged over the theme's
+# _data/origin/basic.yml; only the keys below change).
+#
+# The chirpy-static-assets submodule (assets/lib) ships only the English
+# dayjs locale. Point the locale at a copy kept in this repo so dates keep
+# following `lang` in _config.yml. Each language used there needs a matching
+# file in assets/js/dayjs/locale/, taken unmodified from the dayjs npm package
+# (same version as assets/lib/dayjs).
+dayjs:
+  js:
+    locale: /assets/js/dayjs/locale/:LOCALE.js

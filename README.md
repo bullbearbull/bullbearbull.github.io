@@ -48,10 +48,17 @@ assets/images/<post-slug>/example.png
 
 ## 로컬에서 미리보기
 
-Ruby와 Bundler가 필요합니다.
+Ruby와 Bundler가 필요합니다. 글꼴과 JS 라이브러리는 CDN 대신 `assets/lib` 서브모듈에서 불러오므로, 처음 한 번 서브모듈을 받아야 합니다.
+
+```bash
+git submodule update --init
+```
 
 ```bash
 bundle install
+```
+
+```bash
 bundle exec jekyll serve
 ```
 
