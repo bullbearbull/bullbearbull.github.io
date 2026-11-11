@@ -1,0 +1,9 @@
+MathJax NewCM font, browser (CHTML) files only.
+
+Source:  npm package @mathjax/mathjax-newcm-font, version 4.1.2
+         (https://github.com/mathjax/MathJax-fonts), files copied unmodified
+         from its chtml/ directory.
+License: Apache License 2.0, https://www.apache.org/licenses/LICENSE-2.0
+
+Kept here so MathJax loads its fonts from this site instead of a CDN.
+The version must match assets/lib/mathjax (see assets/js/data/mathjax.js).

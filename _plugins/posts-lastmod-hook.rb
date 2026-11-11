@@ -2,12 +2,17 @@
 #
 # Check for changed posts
 
+# The post path goes to git as its own argument, never through a shell, so a
+# file name cannot run commands during the build.
+
+require 'open3'
+
 Jekyll::Hooks.register :posts, :post_init do |post|
 
-  commit_num = `git rev-list --count HEAD "#{ post.path }"`
+  commit_num, = Open3.capture2('git', 'rev-list', '--count', 'HEAD', '--', post.path)
 
   if commit_num.to_i > 1
-    lastmod_date = `git log -1 --pretty="%ad" --date=iso "#{ post.path }"`
+    lastmod_date, = Open3.capture2('git', 'log', '-1', '--pretty=%ad', '--date=iso', '--', post.path)
     post.data['last_modified_at'] = lastmod_date
   end
 
