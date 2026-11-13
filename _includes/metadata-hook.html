@@ -12,3 +12,6 @@
   title="{{ site.title }}"
   href="{{ '/rss.xml' | absolute_url }}"
 />
+{% if page.layout == 'post' %}
+<script defer src="{{ '/assets/js/margin-notes.js' | relative_url }}"></script>
+{% endif %}
