@@ -224,6 +224,7 @@ exclude:
   - test
   - tools
   - README.md
+  - STYLE.md
   - LICENSE
   - purgecss.js
   - "*.config.js"
