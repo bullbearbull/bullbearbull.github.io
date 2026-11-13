@@ -216,6 +216,7 @@ include:
   - .htaccess
   - tools/options-payoff.md
   - tools/bond-simulator.md
+  - tools/tls-ols-explorer.md
 
 exclude:
   - "*.gem"

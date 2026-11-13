@@ -1,0 +1,57 @@
+<!-- TLS vs OLS Regression Explorer: the tool UI is built by assets/js/tls-ols-explorer.js (I18N.en / I18N.ko). No inline script/style.
+     Static page copy is duplicated with data-tls-lang; English is visible by default (also without JS). Page title/meta stay English. -->
+<link rel="stylesheet" href="{{ '/assets/css/tls-ols-explorer.css' | relative_url }}">
+
+<div class="tls-page-copy" data-tls-lang="en">
+  <p>Adjust measurement noise on both axes (<strong>&sigma;<sub>x</sub></strong>, <strong>&sigma;<sub>y</sub></strong>), the true slope, and the X scale multiplier (<strong>k</strong>) to observe OLS attenuation bias, 90&deg; orthogonal TLS projections, variable-order symmetry, and scale sensitivity in real time.</p>
+</div>
+<div class="tls-page-copy" data-tls-lang="ko" hidden lang="ko">
+  <p>X축과 Y축의 측정 노이즈(<strong>&sigma;<sub>x</sub></strong>, <strong>&sigma;<sub>y</sub></strong>), 참 기울기, X 스케일 배율(<strong>k</strong>)을 직접 조절하며 OLS 감쇠 편향, TLS의 90&deg; 직교 투영, 변수 순서 대칭성, 스케일 민감도를 실시간으로 확인합니다.</p>
+</div>
+
+<div id="tls-ols-app" class="tls-app" lang="en">
+  <noscript>This tool needs JavaScript enabled in your browser.</noscript>
+</div>
+
+<div class="tls-page-copy" data-tls-lang="en">
+  <h3 id="tls-how-to-use">How to use</h3>
+  <ol>
+    <li><strong>Measurement noise:</strong> Increase <strong>&sigma;<sub>x</sub></strong> while holding <strong>&sigma;<sub>y</sub></strong> fixed to see the OLS line flatten toward zero (attenuation bias) while the TLS slope remains centered near the true slope when &sigma;<sub>x</sub> = &sigma;<sub>y</sub>.</li>
+    <li><strong>Variable symmetry:</strong> Toggle “Show reverse OLS” to compare <code>y ~ x</code> against inverted <code>x ~ y</code>; TLS gives the single line matching both directions.</li>
+    <li><strong>X scale sensitivity:</strong> Drag <strong>k</strong> above 1 to push TLS toward forward OLS (<code>y ~ x</code>), or below 1 to pull it toward reverse OLS (<code>x ~ y</code>).</li>
+  </ol>
+  <h3 id="tls-definitions">Definitions</h3>
+  <div class="tls-def-table"><table>
+    <thead><tr><th>Method</th><th>Objective &amp; Estimator</th></tr></thead>
+    <tbody>
+      <tr><td>OLS (y ~ x)</td><td>Minimizes vertical residuals &Sigma;(y<sub>i</sub> &minus; (a&middot;x<sub>i</sub> + b))&sup2;; slope = S<sub>xy</sub> / S<sub>xx</sub></td></tr>
+      <tr><td>TLS (Orthogonal)</td><td>Minimizes perpendicular distances &Sigma;(a&middot;x<sub>i</sub> + b &minus; y<sub>i</sub>)&sup2; / (a&sup2; + 1) via the smallest right singular vector of centered [x&#771;, y&#771;]</td></tr>
+      <tr><td>Scaled TLS (x&prime; = k&middot;x)</td><td>Fits TLS on (k&middot;x, y) and rescales slope back by k; approaches reverse OLS as k &rarr; 0 and forward OLS as k &rarr; &infin;</td></tr>
+    </tbody>
+  </table></div>
+  <blockquote class="prompt-warning">
+    <p>For education and reference only. All simulation math runs locally in your browser (only language preference is saved in localStorage). Site-wide page analytics follow the site’s Google Analytics configuration.</p>
+  </blockquote>
+</div>
+<div class="tls-page-copy" data-tls-lang="ko" hidden lang="ko">
+  <h3 id="tls-how-to-use-ko">사용 방법</h3>
+  <ol>
+    <li><strong>측정 노이즈 조절:</strong> <strong>&sigma;<sub>x</sub></strong>를 키우면 OLS 기울기가 참 기울기보다 0 쪽으로 꺾이는 감쇠 편향을 확인할 수 있습니다. 등방성 노이즈(&sigma;<sub>x</sub> = &sigma;<sub>y</sub>) 조건에서는 TLS가 참 기울기 주변을 유지합니다.</li>
+    <li><strong>변수 순서 대칭성:</strong> ‘역방향 OLS 표시’를 켜면 <code>y ~ x</code>와 <code>x ~ y</code> 역변환 직선이 갈라지는 반면 TLS는 하나로 일치하는 모습을 비교할 수 있습니다.</li>
+    <li><strong>X 스케일 배율 (k):</strong> <strong>k</strong>를 1보다 크게 키우면 TLS가 정방향 OLS로, 1보다 작게 줄이면 역방향 OLS로 수렴합니다.</li>
+  </ol>
+  <h3 id="tls-definitions-ko">계산 기준</h3>
+  <div class="tls-def-table"><table>
+    <thead><tr><th>추정법</th><th>최소화 목적함수 및 계산식</th></tr></thead>
+    <tbody>
+      <tr><td>OLS (y ~ x)</td><td>수직 잔차 제곱합 &Sigma;(y<sub>i</sub> &minus; (a&middot;x<sub>i</sub> + b))&sup2; 최소화, 기울기 = S<sub>xy</sub> / S<sub>xx</sub></td></tr>
+      <tr><td>TLS (직교 회귀)</td><td>직선까지의 수직 거리 제곱합 &Sigma;(a&middot;x<sub>i</sub> + b &minus; y<sub>i</sub>)&sup2; / (a&sup2; + 1) 최소화, 중심화 행렬 [x&#771;, y&#771;]의 최소 특이벡터로 산출</td></tr>
+      <tr><td>스케일 적용 TLS (x&prime; = k&middot;x)</td><td>(k&middot;x, y)에 TLS를 적합한 뒤 원단위 기울기(k&middot;slope&prime;)로 환산. k &rarr; 0이면 역방향 OLS, k &rarr; &infin;이면 정방향 OLS로 수렴</td></tr>
+    </tbody>
+  </table></div>
+  <blockquote class="prompt-warning">
+    <p>교육·참고용 시뮬레이터입니다. 모든 계산은 브라우저 안에서만 실행되며 입력 데이터는 서버로 전송되지 않습니다(언어 설정만 localStorage에 저장). 사이트 전체 방문 통계는 블로그의 Google Analytics 설정을 따릅니다.</p>
+  </blockquote>
+</div>
+
+<script src="{{ '/assets/js/tls-ols-explorer.js' | relative_url }}" defer></script>
